@@ -1,0 +1,1140 @@
+<!--<!DOCTYPE html>-->
+<!--<html lang="en">-->
+<!--<head>-->
+<!--    <meta charset="UTF-8">-->
+<!--    <meta name="viewport" content="width=device-width, initial-scale=1.0">-->
+<!--    <title>Create New Complaint - TechComp</title>-->
+
+<!--    &lt;!&ndash; Bootstrap 5 CSS &ndash;&gt;-->
+<!--    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">-->
+
+<!--    &lt;!&ndash; Google Fonts: Poppins &ndash;&gt;-->
+<!--    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">-->
+
+<!--    &lt;!&ndash; Font Awesome for Icons &ndash;&gt;-->
+<!--    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">-->
+
+<!--    <style>-->
+<!--        body {-->
+<!--            font-family: 'Poppins', sans-serif;-->
+<!--            background-color: #f4f6f9;-->
+<!--            color: #333;-->
+<!--            padding-top: 0px;-->
+<!--        }-->
+
+<!--        /* Navbar - PERFECT MATCH */-->
+<!--        .navbar {-->
+<!--            background: linear-gradient(135deg, #1e1e2f 0%, #32325d 100%);-->
+<!--            box-shadow: 0 4px 6px rgba(0,0,0,0.1);-->
+<!--            padding: 15px 0;-->
+<!--            margin-bottom: 0.4px;-->
+<!--        }-->
+<!--        .navbar-brand {-->
+<!--            font-weight: 700;-->
+<!--            font-size: 1.5rem;-->
+<!--            letter-spacing: 1px;-->
+<!--            color: white !important;-->
+<!--        }-->
+
+<!--        /* Admin Button - SAME */-->
+<!--        .btn-admin {-->
+<!--            background-color: #ffc107;-->
+<!--            color: #1e1e2f;-->
+<!--            border: none;-->
+<!--            padding: 8px 20px;-->
+<!--            border-radius: 50px;-->
+<!--            font-weight: 600;-->
+<!--            transition: all 0.3s ease;-->
+<!--            text-decoration: none;-->
+<!--        }-->
+<!--        .btn-admin:hover {-->
+<!--            background-color: #ffcd39;-->
+<!--            color: #000;-->
+<!--            transform: translateY(-2px);-->
+<!--            box-shadow: 0 4px 10px rgba(255, 193, 7, 0.4);-->
+<!--        }-->
+
+<!--        /* Primary Button - SAME */-->
+<!--        .btn-primary-custom {-->
+<!--            background-color: rgba(255, 255, 255, 0.1);-->
+<!--            border: 1px solid rgba(255, 255, 255, 0.2);-->
+<!--            padding: 8px 20px;-->
+<!--            border-radius: 50px;-->
+<!--            font-weight: 600;-->
+<!--            transition: all 0.3s ease;-->
+<!--            text-decoration: none;-->
+<!--            color: white;-->
+<!--            display: inline-flex;-->
+<!--            align-items: center;-->
+<!--            gap: 8px;-->
+<!--        }-->
+<!--        .btn-primary-custom:hover {-->
+<!--            background-color: white;-->
+<!--            color: #000 !important;-->
+<!--            transform: translateY(-2px);-->
+<!--            box-shadow: 0 4px 10px rgba(255, 255, 255, 0.3);-->
+<!--        }-->
+
+<!--        /* Hero Section - PERFECT SPACING */-->
+<!--        .hero-section {-->
+<!--            background: linear-gradient(rgba(30, 30, 47, 0.95), rgba(30, 30, 47, 0.95)),-->
+<!--            url('https://images.unsplash.com/photo-1519389950473-47ba0277781c?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80');-->
+<!--            background-size: cover;-->
+<!--            background-position: center;-->
+<!--            color: white;-->
+<!--            padding: 37px 0 37px;-->
+<!--            margin-bottom: 40px;-->
+<!--            border-radius: 0 0 13px 13px;-->
+<!--        }-->
+<!--        .hero-title {-->
+<!--            font-size: 2.8rem;-->
+<!--            font-weight: 700;-->
+<!--            margin-bottom: 15px;-->
+<!--            line-height: 1.2;-->
+<!--        }-->
+<!--        .hero-subtitle {-->
+<!--            font-size: 1.25rem;-->
+<!--            font-weight: 300;-->
+<!--            opacity: 0.95;-->
+<!--            max-width: 650px;-->
+<!--            margin: 0 auto;-->
+<!--            line-height: 1.6;-->
+<!--        }-->
+
+<!--        /* Main Container - BETTER SPACING */-->
+<!--        .main-container {-->
+<!--            padding: 0 20px;-->
+<!--            max-width: 1000px;-->
+<!--            margin: 0 auto 60px;-->
+<!--        }-->
+
+<!--        /* Form Card - PERFECT SIZE & SPACING */-->
+<!--        .form-card {-->
+<!--            background: white;-->
+<!--            border-radius: 20px;-->
+<!--            overflow: hidden;-->
+<!--            box-shadow: 0 10px 30px rgba(0,0,0,0.08);-->
+<!--            margin-bottom: 40px;-->
+<!--            transition: all 0.4s ease;-->
+<!--            border: 1px solid rgba(255,255,255,0.2);-->
+<!--        }-->
+<!--        .form-card:hover {-->
+<!--            transform: translateY(-8px);-->
+<!--            box-shadow: 0 25px 50px rgba(0,0,0,0.12);-->
+<!--        }-->
+
+<!--        .form-card-header {-->
+<!--            background: linear-gradient(135deg, #6c63ff15, #5a52d515);-->
+<!--            padding: 25px 35px;-->
+<!--            border-bottom: 1px solid #f0f4f8;-->
+<!--        }-->
+
+<!--        .form-card-body {-->
+<!--            padding: 45px 40px 50px;-->
+<!--        }-->
+
+<!--        .form-title {-->
+<!--            font-size: 1.6rem;-->
+<!--            font-weight: 700;-->
+<!--            color: #2d3436;-->
+<!--            margin: 0 0 10px 0;-->
+<!--        }-->
+
+<!--        .form-subtitle {-->
+<!--            color: #636e72;-->
+<!--            font-size: 0.95rem;-->
+<!--            margin: 0;-->
+<!--        }-->
+
+<!--        /* Form Elements - PERFECT SPACING */-->
+<!--        .form-group {-->
+<!--            margin-bottom: 28px;-->
+<!--        }-->
+
+<!--        .form-label {-->
+<!--            font-weight: 600;-->
+<!--            color: #2d3436;-->
+<!--            margin-bottom: 10px;-->
+<!--            font-size: 0.95rem;-->
+<!--            display: block;-->
+<!--        }-->
+
+<!--        .form-control, .form-select {-->
+<!--            border: 2px solid #f0f4f8;-->
+<!--            border-radius: 15px;-->
+<!--            padding: 16px 22px;-->
+<!--            font-size: 1rem;-->
+<!--            transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);-->
+<!--            background: #fafbfc;-->
+<!--            box-shadow: 0 3px 12px rgba(0,0,0,0.04);-->
+<!--            height: 56px;-->
+<!--        }-->
+
+<!--        .form-control:focus, .form-select:focus {-->
+<!--            border-color: #6c63ff;-->
+<!--            box-shadow: 0 0 0 0.25rem rgba(108, 99, 255, 0.12), 0 8px 25px rgba(108, 99, 255, 0.15);-->
+<!--            background: white;-->
+<!--            transform: translateY(-2px);-->
+<!--        }-->
+
+<!--        textarea.form-control {-->
+<!--            min-height: 160px;-->
+<!--            resize: vertical;-->
+<!--            padding-top: 18px;-->
+<!--        }-->
+
+<!--        /* Priority Buttons - BEAUTIFUL SPACING */-->
+
+<!--        /* Priority Buttons - NEW DESIGN MATCHING DASHBOARD */-->
+<!--        .priority-section {-->
+<!--            margin: 35px 0 30px 0;-->
+<!--        }-->
+
+<!--        .priority-group {-->
+<!--            display: flex;-->
+<!--            gap: 12px;-->
+<!--            margin-top: 12px;-->
+<!--        }-->
+
+<!--        .priority-btn {-->
+<!--            flex: 1;-->
+<!--            padding: 16px 20px;-->
+<!--            border: 2px solid #e9ecef;-->
+<!--            border-radius: 12px;-->
+<!--            text-align: center;-->
+<!--            cursor: pointer;-->
+<!--            transition: all 0.3s ease;-->
+<!--            font-weight: 600;-->
+<!--            font-size: 0.95rem;-->
+<!--            background: #fafbfc;-->
+<!--            color: #636e72;-->
+<!--            position: relative;-->
+<!--            overflow: hidden;-->
+<!--            display: flex;-->
+<!--            align-items: center;-->
+<!--            justify-content: center;-->
+<!--            gap: 8px;-->
+<!--            min-height: 60px;-->
+<!--        }-->
+
+<!--        .priority-btn i {-->
+<!--            font-size: 1.1rem;-->
+<!--        }-->
+
+<!--        .priority-btn::before {-->
+<!--            content: '';-->
+<!--            position: absolute;-->
+<!--            top: 0;-->
+<!--            left: -100%;-->
+<!--            width: 100%;-->
+<!--            height: 100%;-->
+<!--            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);-->
+<!--            transition: left 0.5s;-->
+<!--        }-->
+
+<!--        .priority-btn:hover::before {-->
+<!--            left: 100%;-->
+<!--        }-->
+
+<!--        .priority-btn:hover {-->
+<!--            border-color: #6c63ff;-->
+<!--            color: #6c63ff;-->
+<!--            transform: translateY(-3px);-->
+<!--            box-shadow: 0 8px 25px rgba(108, 99, 255, 0.2);-->
+<!--        }-->
+
+<!--        .priority-btn.active {-->
+<!--            background: linear-gradient(135deg, #6c63ff, #5a52d5);-->
+<!--            border-color: #6c63ff;-->
+<!--            color: white !important;-->
+<!--            box-shadow: 0 10px 30px rgba(108, 99, 255, 0.4);-->
+<!--            transform: translateY(-3px);-->
+<!--        }-->
+
+<!--        .priority-btn.active i {-->
+<!--            color: white !important;-->
+<!--        }-->
+
+<!--        .priority-group input[type="radio"]:checked + label {-->
+<!--            background: linear-gradient(135deg, #6c63ff, #5a52d5);-->
+<!--            border-color: #6c63ff;-->
+<!--            color: white !important;-->
+<!--            box-shadow: 0 10px 30px rgba(108, 99, 255, 0.4);-->
+<!--            transform: translateY(-3px);-->
+<!--        }-->
+
+<!--        /* Responsive Priority Buttons */-->
+<!--        @media (max-width: 992px) {-->
+<!--            .priority-group {-->
+<!--                flex-direction: column;-->
+<!--                gap: 12px;-->
+<!--            }-->
+
+<!--            .priority-btn {-->
+<!--                padding: 18px 20px;-->
+<!--                min-height: 65px;-->
+<!--            }-->
+<!--        }-->
+
+<!--        /* Buttons Section - PERFECT ALIGNMENT */-->
+<!--        .form-buttons {-->
+<!--            padding-top: 35px;-->
+<!--            margin-top: 40px;-->
+<!--            border-top: 1px solid #f0f4f8;-->
+<!--        }-->
+
+<!--        .btn-submit {-->
+<!--            background: linear-gradient(135deg, #6c63ff, #5a52d5);-->
+<!--            color: white;-->
+<!--            border: none;-->
+<!--            border-radius: 16px;-->
+<!--            padding: 18px 45px;-->
+<!--            font-weight: 600;-->
+<!--            font-size: 1.05rem;-->
+<!--            transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);-->
+<!--            box-shadow: 0 8px 25px rgba(108, 99, 255, 0.3);-->
+<!--            position: relative;-->
+<!--            overflow: hidden;-->
+<!--            min-width: 200px;-->
+<!--        }-->
+
+<!--        .btn-submit::before {-->
+<!--            content: '';-->
+<!--            position: absolute;-->
+<!--            top: 0;-->
+<!--            left: -100%;-->
+<!--            width: 100%;-->
+<!--            height: 100%;-->
+<!--            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);-->
+<!--            transition: left 0.6s;-->
+<!--        }-->
+
+<!--        .btn-submit:hover::before {-->
+<!--            left: 100%;-->
+<!--        }-->
+
+<!--        .btn-submit:hover {-->
+<!--            transform: translateY(-4px);-->
+<!--            box-shadow: 0 20px 45px rgba(108, 99, 255, 0.45);-->
+<!--            color: white;-->
+<!--        }-->
+
+<!--        .btn-cancel-custom {-->
+<!--            border: 2px solid #e9ecef;-->
+<!--            color: #636e72;-->
+<!--            padding: 18px 45px;-->
+<!--            border-radius: 16px;-->
+<!--            font-weight: 600;-->
+<!--            font-size: 1.05rem;-->
+<!--            transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);-->
+<!--            text-decoration: none;-->
+<!--            display: inline-flex;-->
+<!--            align-items: center;-->
+<!--            min-width: 200px;-->
+<!--            justify-content: center;-->
+<!--        }-->
+
+<!--        .btn-cancel-custom:hover {-->
+<!--            border-color: #6c63ff;-->
+<!--            color: #6c63ff;-->
+<!--            background: rgba(108, 99, 255, 0.08);-->
+<!--            transform: translateY(-3px);-->
+<!--            box-shadow: 0 10px 30px rgba(108, 99, 255, 0.2);-->
+<!--        }-->
+
+<!--        /* Footer - SAME */-->
+<!--        footer {-->
+<!--            background-color: #2d3436;-->
+<!--            color: #dfe6e9;-->
+<!--            padding: 50px 0 30px;-->
+<!--            margin-top: 80px;-->
+<!--        }-->
+<!--        .footer-links a {-->
+<!--            color: #b2bec3;-->
+<!--            text-decoration: none;-->
+<!--            margin: 0 15px;-->
+<!--            font-weight: 500;-->
+<!--        }-->
+<!--        .footer-links a:hover {-->
+<!--            color: #6c63ff;-->
+<!--        }-->
+
+<!--        /* Responsive - PERFECT MOBILE */-->
+<!--        @media (max-width: 992px) {-->
+<!--            .hero-title { font-size: 2.3rem; }-->
+<!--            .hero-subtitle { font-size: 1.15rem; }-->
+<!--            .main-container { padding: 0 15px; }-->
+<!--            .form-card-body { padding: 35px 25px 40px; }-->
+<!--            .priority-group { flex-direction: column; gap: 12px; }-->
+<!--            .form-buttons .gap-4 { gap: 15px !important; }-->
+<!--        }-->
+
+<!--        @media (max-width: 576px) {-->
+<!--            .hero-section { padding: 90px 0 60px; }-->
+<!--            .hero-title { font-size: 2rem; }-->
+<!--            .form-card-body { padding: 30px 20px 35px; }-->
+<!--        }-->
+<!--    </style>-->
+<!--</head>-->
+<!--<body>-->
+
+<!--&lt;!&ndash; Navigation &ndash;&gt;-->
+<!--<nav class="navbar navbar-expand-lg navbar-dark sticky-top">-->
+<!--    <div class="container">-->
+<!--        <a class="navbar-brand" href="/">-->
+<!--            <i class="fas fa-rocket me-2"></i>🚀 TechComp-->
+<!--        </a>-->
+<!--        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">-->
+<!--            <span class="navbar-toggler-icon"></span>-->
+<!--        </button>-->
+<!--        <div class="collapse navbar-collapse justify-content-end" id="navbarNav">-->
+<!--            <a href="/Admin" class="btn btn-admin me-3">-->
+<!--                <i class="fas fa-user-shield me-2"></i>Admin-->
+<!--            </a>-->
+<!--            <a href="/" class="btn btn-primary-custom">-->
+<!--                <i class="fas fa-list me-2"></i>All Complaints-->
+<!--            </a>-->
+<!--        </div>-->
+<!--    </div>-->
+<!--</nav>-->
+
+<!--&lt;!&ndash; Hero Section &ndash;&gt;-->
+<!--<section class="hero-section">-->
+<!--    <div class="container text-center">-->
+<!--        <h1 class="hero-title">-->
+<!--            <i class="fas fa-file-plus me-3 opacity-90"></i>File New Complaint-->
+<!--        </h1>-->
+<!--        <p class="hero-subtitle mx-auto">-->
+<!--            Submit your complaint securely. Our team responds within <strong>24 hours</strong> guaranteed.-->
+<!--        </p>-->
+<!--    </div>-->
+<!--</section>-->
+
+<!--&lt;!&ndash; Main Content &ndash;&gt;-->
+<!--<div class="main-container">-->
+<!--    <div class="row justify-content-center">-->
+<!--        <div class="col-12">-->
+<!--            &lt;!&ndash; Form Card &ndash;&gt;-->
+<!--            <div class="form-card">-->
+<!--                <div class="form-card-header">-->
+<!--                    <h3 class="form-title mb-1">-->
+<!--                        <i class="fas fa-edit me-2 text-primary"></i>Complaint Details-->
+<!--                    </h3>-->
+<!--                    <p class="form-subtitle mb-0">-->
+<!--                        <i class="fas fa-info-circle me-1"></i>All fields marked with * are required-->
+<!--                    </p>-->
+<!--                </div>-->
+
+<!--                <div class="form-card-body">-->
+<!--                    <form id="complaintForm" method="post" action="/save" >-->
+<!--                        <div class="row">-->
+<!--                            <div class="col-lg-6">-->
+<!--                                <div class="form-group">-->
+<!--                                    <label class="form-label">Complaint Title <span class="text-danger">*</span></label>-->
+<!--                                    <input type="text" class="form-control" name="title" placeholder="e.g., Internet connection down since 2 days" required>-->
+<!--                                </div>-->
+<!--                            </div>-->
+<!--                            <div class="col-lg-6">-->
+<!--                                <div class="form-group">-->
+<!--                                    <label class="form-label">Full Name <span class="text-danger">*</span></label>-->
+<!--                                    <input type="text" class="form-control" name="userName" placeholder="Enter your full name" required>-->
+<!--                                </div>-->
+<!--                            </div>-->
+<!--                        </div>-->
+
+<!--                        <div class="row">-->
+<!--                            <div class="col-lg-6">-->
+<!--                                <div class="form-group">-->
+<!--                                    <label class="form-label">Email Address <span class="text-danger">*</span></label>-->
+<!--                                    <input type="email" class="form-control" name="email" placeholder="your.email@domain.com" required>-->
+<!--                                </div>-->
+<!--                            </div>-->
+<!--                            <div class="col-lg-6">-->
+<!--                                <div class="form-group">-->
+<!--                                    <label class="form-label">Phone Number <span class="text-danger">*</span></label>-->
+<!--                                    <input type="tel" class="form-control" name="phone" pattern="[0-9]{10}" placeholder="e.g., +91 9876543210" required>-->
+<!--                                </div>-->
+<!--                            </div>-->
+<!--                        </div>-->
+
+<!--                        <div class="row">-->
+<!--                            <div class="col-lg-6">-->
+<!--                                <div class="form-group">-->
+<!--                                    <label class="form-label">Department <span class="text-danger">*</span></label>-->
+<!--                                    <select class="form-select" name="department" required>-->
+<!--                                        <option value="">Choose Department</option>-->
+<!--                                        <option value="IT">💻 IT Support</option>-->
+<!--                                        <option value="Network">🌐 Network Issues</option>-->
+<!--                                        <option value="Billing">💳 Billing & Payments</option>-->
+<!--                                        <option value="HR">👥 Human Resources</option>-->
+<!--                                        <option value="Other">📋 Other</option>-->
+<!--                                    </select>-->
+<!--                                </div>-->
+<!--                            </div>-->
+
+<!--                            <div class="col-lg-6">-->
+<!--                                <div class="form-group priority-section">-->
+<!--                                    <label class="form-label">Priority Level <span class="text-danger">*</span></label>-->
+
+<!--                                    <div class="priority-group">-->
+
+<!--                                        <input type="radio" id="low" name="priority" value="LOW" checked hidden>-->
+<!--                                        <label for="low" class="priority-btn">-->
+<!--                                            <i class="fas fa-circle text-success me-2"></i>Low-->
+<!--                                        </label>-->
+
+<!--                                        <input type="radio" id="medium" name="priority" value="MEDIUM" hidden>-->
+<!--                                        <label for="medium" class="priority-btn">-->
+<!--                                            <i class="fas fa-minus text-warning me-2"></i>Medium-->
+<!--                                        </label>-->
+
+<!--                                        <input type="radio" id="high" name="priority" value="HIGH" hidden>-->
+<!--                                        <label for="high" class="priority-btn">-->
+<!--                                            <i class="fas fa-exclamation-triangle text-danger me-2"></i>High-->
+<!--                                        </label>-->
+
+<!--                                    </div>-->
+<!--                                </div>-->
+<!--                            </div>-->
+<!--                        </div>-->
+
+<!--                        <div class="form-group">-->
+<!--                            <label class="form-label">Detailed Description <span class="text-danger">*</span></label>-->
+<!--                            <textarea class="form-control" name="description" placeholder="Please describe your issue in detail. Include dates, times, what you've tried, screenshots if possible..." required></textarea>-->
+<!--                            <div class="form-text mt-2">-->
+<!--                                <i class="fas fa-info-circle me-1"></i>Be specific - helps us resolve faster-->
+<!--                            </div>-->
+<!--                        </div>-->
+
+<!--                        <div class="form-buttons d-flex justify-content-end gap-4 flex-wrap">-->
+<!--                            <a href="/" class="btn-cancel-custom">-->
+<!--                                <i class="fas fa-times-circle me-2"></i>Cancel-->
+<!--                            </a>-->
+<!--                            <button type="submit" class="btn btn-submit">-->
+<!--                                <i class="fas fa-paper-plane me-2"></i>Submit-->
+<!--                                Complaint-->
+<!--                            </button>-->
+<!--                        </div>-->
+<!--                    </form>-->
+<!--                </div>-->
+<!--            </div>-->
+<!--        </div>-->
+<!--    </div>-->
+<!--</div>-->
+
+<!--&lt;!&ndash; Footer &ndash;&gt;-->
+<!--<footer>-->
+<!--    <div class="container text-center">-->
+<!--        <div class="footer-links mb-4">-->
+<!--            <a href="#"><i class="fas fa-info-circle me-2"></i>About</a>-->
+<!--            <a href="#"><i class="fas fa-shield-alt me-2"></i>Privacy Policy</a>-->
+<!--            <a href="#"><i class="fas fa-envelope me-2"></i>Contact</a>-->
+<!--        </div>-->
+<!--        <p class="mb-0 opacity-75">&copy; 2026 TechComp. All rights reserved. | Built with ❤️ for better service</p>-->
+<!--    </div>-->
+<!--</footer>-->
+
+<!--&lt;!&ndash; Bootstrap JS &ndash;&gt;-->
+<!--<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>-->
+
+<!--&lt;!&ndash; Custom JS - PERFECT FUNCTIONALITY &ndash;&gt;-->
+<!--<script>-->
+<!--    // Form submission with validation & success animation-->
+
+<!--    // Auto-resize textarea-->
+<!--    document.querySelector('textarea').addEventListener('input', function() {-->
+<!--        this.style.height = 'auto';-->
+<!--        this.style.height = this.scrollHeight + 'px';-->
+<!--    });-->
+
+<!--    // Form input focus animation-->
+<!--    document.querySelectorAll('.form-control, .form-select').forEach(input => {-->
+<!--        input.addEventListener('focus', function() {-->
+<!--            this.parentElement.style.transform = 'scale(1.02)';-->
+<!--        });-->
+<!--        input.addEventListener('blur', function() {-->
+<!--            this.parentElement.style.transform = 'scale(1)';-->
+<!--        });-->
+<!--    });-->
+<!--</script>-->
+
+<!--</body>-->
+<!--</html>-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Create New Complaint - TechComp</title>
+
+    <!-- Bootstrap 5 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Google Fonts: Poppins -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+
+    <!-- Font Awesome for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: #f4f6f9;
+            color: #333;
+            padding-top: 0px;
+        }
+
+        /* Navbar - PERFECT MATCH */
+        .navbar {
+            background: linear-gradient(135deg, #1e1e2f 0%, #32325d 100%);
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            padding: 15px 0;
+            margin-bottom: 0.4px;
+        }
+        .navbar-brand {
+            font-weight: 700;
+            font-size: 1.5rem;
+            letter-spacing: 1px;
+            color: white !important;
+        }
+
+        /* Admin Button - SAME */
+        .btn-admin {
+            background-color: #ffc107;
+            color: #1e1e2f;
+            border: none;
+            padding: 8px 20px;
+            border-radius: 50px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            text-decoration: none;
+        }
+        .btn-admin:hover {
+            background-color: #ffcd39;
+            color: #000;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 10px rgba(255, 193, 7, 0.4);
+        }
+
+        /* Primary Button - SAME */
+        .btn-primary-custom {
+            background-color: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            padding: 8px 20px;
+            border-radius: 50px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            color: white;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .btn-primary-custom:hover {
+            background-color: white;
+            color: #000 !important;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 10px rgba(255, 255, 255, 0.3);
+        }
+
+        /* Hero Section - PERFECT SPACING */
+        .hero-section {
+            background: linear-gradient(rgba(30, 30, 47, 0.95), rgba(30, 30, 47, 0.95)),
+            url('https://images.unsplash.com/photo-1519389950473-47ba0277781c?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80');
+            background-size: cover;
+            background-position: center;
+            color: white;
+            padding: 37px 0 37px;
+            margin-bottom: 40px;
+            border-radius: 0 0 13px 13px;
+        }
+        .hero-title {
+            font-size: 2.8rem;
+            font-weight: 700;
+            margin-bottom: 15px;
+            line-height: 1.2;
+        }
+        .hero-subtitle {
+            font-size: 1.25rem;
+            font-weight: 300;
+            opacity: 0.95;
+            max-width: 650px;
+            margin: 0 auto;
+            line-height: 1.6;
+        }
+
+        /* Main Container - BETTER SPACING */
+        .main-container {
+            padding: 0 20px;
+            max-width: 1000px;
+            margin: 0 auto 60px;
+        }
+
+        /* Form Card - PERFECT SIZE & SPACING */
+        .form-card {
+            background: white;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+            margin-bottom: 40px;
+            transition: all 0.4s ease;
+            border: 1px solid rgba(255,255,255,0.2);
+        }
+        .form-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 25px 50px rgba(0,0,0,0.12);
+        }
+
+        .form-card-header {
+            background: linear-gradient(135deg, #6c63ff15, #5a52d515);
+            padding: 25px 35px;
+            border-bottom: 1px solid #f0f4f8;
+        }
+
+        .form-card-body {
+            padding: 45px 40px 50px;
+        }
+
+        .form-title {
+            font-size: 1.6rem;
+            font-weight: 700;
+            color: #2d3436;
+            margin: 0 0 10px 0;
+        }
+
+        .form-subtitle {
+            color: #636e72;
+            font-size: 0.95rem;
+            margin: 0;
+        }
+
+        /* Form Elements - PERFECT SPACING */
+        .form-group {
+            margin-bottom: 28px;
+        }
+
+        .form-label {
+            font-weight: 600;
+            color: #2d3436;
+            margin-bottom: 10px;
+            font-size: 0.95rem;
+            display: block;
+        }
+
+        .form-control, .form-select {
+            border: 2px solid #f0f4f8;
+            border-radius: 15px;
+            padding: 16px 22px;
+            font-size: 1rem;
+            transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            background: #fafbfc;
+            box-shadow: 0 3px 12px rgba(0,0,0,0.04);
+            height: 56px;
+        }
+
+        .form-control:focus, .form-select:focus {
+            border-color: #6c63ff;
+            box-shadow: 0 0 0 0.25rem rgba(108, 99, 255, 0.12), 0 8px 25px rgba(108, 99, 255, 0.15);
+            background: white;
+            transform: translateY(-2px);
+        }
+
+        textarea.form-control {
+            min-height: 160px;
+            resize: vertical;
+            padding-top: 18px;
+        }
+
+        /* Priority Buttons - BEAUTIFUL SPACING */
+
+        /* Priority Buttons - NEW DESIGN MATCHING DASHBOARD */
+        .priority-section {
+            margin: 35px 0 30px 0;
+        }
+
+        .priority-group {
+            display: flex;
+            gap: 12px;
+            margin-top: 12px;
+        }
+
+        .priority-btn {
+            flex: 1;
+            padding: 16px 20px;
+            border: 2px solid #e9ecef;
+            border-radius: 12px;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-weight: 600;
+            font-size: 0.95rem;
+            background: #fafbfc;
+            color: #636e72;
+            position: relative;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            min-height: 60px;
+        }
+
+        .priority-btn i {
+            font-size: 1.1rem;
+        }
+
+        .priority-btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+            transition: left 0.5s;
+        }
+
+        .priority-btn:hover::before {
+            left: 100%;
+        }
+
+        .priority-btn:hover {
+            border-color: #6c63ff;
+            color: #6c63ff;
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(108, 99, 255, 0.2);
+        }
+
+        .priority-btn.active {
+            background: linear-gradient(135deg, #6c63ff, #5a52d5);
+            border-color: #6c63ff;
+            color: white !important;
+            box-shadow: 0 10px 30px rgba(108, 99, 255, 0.4);
+            transform: translateY(-3px);
+        }
+
+        .priority-btn.active i {
+            color: white !important;
+        }
+
+        .priority-group input[type="radio"]:checked + label {
+            background: linear-gradient(135deg, #6c63ff, #5a52d5);
+            border-color: #6c63ff;
+            color: white !important;
+            box-shadow: 0 10px 30px rgba(108, 99, 255, 0.4);
+            transform: translateY(-3px);
+        }
+
+        /* Responsive Priority Buttons */
+        @media (max-width: 992px) {
+            .priority-group {
+                flex-direction: column;
+                gap: 12px;
+            }
+
+            .priority-btn {
+                padding: 18px 20px;
+                min-height: 65px;
+            }
+        }
+
+        /* Buttons Section - PERFECT ALIGNMENT */
+        .form-buttons {
+            padding-top: 35px;
+            margin-top: 40px;
+            border-top: 1px solid #f0f4f8;
+        }
+
+        .btn-submit {
+            background: linear-gradient(135deg, #6c63ff, #5a52d5);
+            color: white;
+            border: none;
+            border-radius: 16px;
+            padding: 18px 45px;
+            font-weight: 600;
+            font-size: 1.05rem;
+            transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            box-shadow: 0 8px 25px rgba(108, 99, 255, 0.3);
+            position: relative;
+            overflow: hidden;
+            min-width: 200px;
+        }
+
+        .btn-submit::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+            transition: left 0.6s;
+        }
+
+        .btn-submit:hover::before {
+            left: 100%;
+        }
+
+        .btn-submit:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 20px 45px rgba(108, 99, 255, 0.45);
+            color: white;
+        }
+
+        .btn-cancel-custom {
+            border: 2px solid #e9ecef;
+            color: #636e72;
+            padding: 18px 45px;
+            border-radius: 16px;
+            font-weight: 600;
+            font-size: 1.05rem;
+            transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            min-width: 200px;
+            justify-content: center;
+        }
+
+        .btn-cancel-custom:hover {
+            border-color: #6c63ff;
+            color: #6c63ff;
+            background: rgba(108, 99, 255, 0.08);
+            transform: translateY(-3px);
+            box-shadow: 0 10px 30px rgba(108, 99, 255, 0.2);
+        }
+
+        /* Footer - SAME */
+        footer {
+            background-color: #2d3436;
+            color: #dfe6e9;
+            padding: 50px 0 30px;
+            margin-top: 80px;
+        }
+        .footer-links a {
+            color: #b2bec3;
+            text-decoration: none;
+            margin: 0 15px;
+            font-weight: 500;
+        }
+        .footer-links a:hover {
+            color: #6c63ff;
+        }
+
+        /* Responsive - PERFECT MOBILE */
+        @media (max-width: 992px) {
+            .hero-title { font-size: 2.3rem; }
+            .hero-subtitle { font-size: 1.15rem; }
+            .main-container { padding: 0 15px; }
+            .form-card-body { padding: 35px 25px 40px; }
+            .priority-group { flex-direction: column; gap: 12px; }
+            .form-buttons .gap-4 { gap: 15px !important; }
+        }
+
+        @media (max-width: 576px) {
+            .hero-section { padding: 90px 0 60px; }
+            .hero-title { font-size: 2rem; }
+            .form-card-body { padding: 30px 20px 35px; }
+        }
+    </style>
+</head>
+<body>
+
+<!-- Navigation -->
+<nav class="navbar navbar-expand-lg navbar-dark sticky-top">
+    <div class="container">
+        <a class="navbar-brand" href="/">
+            <i class="fas fa-rocket me-2"></i>🚀 TechComp
+        </a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
+            <a href="/Admin" class="btn btn-admin me-3">
+                <i class="fas fa-user-shield me-2"></i>Admin
+            </a>
+            <a href="/" class="btn btn-primary-custom">
+                <i class="fas fa-list me-2"></i>All Complaints
+            </a>
+        </div>
+    </div>
+</nav>
+
+<!-- Hero Section -->
+<section class="hero-section">
+    <div class="container text-center">
+        <h1 class="hero-title">
+            <i class="fas fa-file-plus me-3 opacity-90"></i>File New Complaint
+        </h1>
+        <p class="hero-subtitle mx-auto">
+            Submit your complaint securely. Our team responds within <strong>24 hours</strong> guaranteed.
+        </p>
+    </div>
+</section>
+
+<!-- Main Content -->
+<div class="main-container">
+    <div class="row justify-content-center">
+        <div class="col-12">
+            <!-- Form Card -->
+            <div class="form-card">
+                <div class="form-card-header">
+                    <h3 class="form-title mb-1">
+                        <i class="fas fa-edit me-2 text-primary"></i>Complaint Details
+                    </h3>
+                    <p class="form-subtitle mb-0">
+                        <i class="fas fa-info-circle me-1"></i>All fields marked with * are required
+                    </p>
+                </div>
+
+                <div class="form-card-body">
+                    <form id="complaintForm" method="post" action="/save" >
+                        <div class="row">
+                            <div class="col-lg-6">
+                                <div class="form-group">
+                                    <label class="form-label">Complaint Title <span class="text-danger">*</span></label>
+                                    <input type="text" class="form-control" name="title" placeholder="e.g., Internet connection down since 2 days" required>
+                                </div>
+                            </div>
+                            <div class="col-lg-6">
+                                <div class="form-group">
+                                    <label class="form-label">Full Name <span class="text-danger">*</span></label>
+                                    <input type="text" class="form-control" name="userName" placeholder="Enter your full name" required>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-lg-6">
+                                <div class="form-group">
+                                    <label class="form-label">Email Address <span class="text-danger">*</span></label>
+                                    <input type="email" class="form-control" name="email" placeholder="your.email@domain.com" required>
+                                </div>
+                            </div>
+                            <div class="col-lg-6">
+                                <div class="form-group">
+                                    <label class="form-label">Phone Number <span class="text-danger">*</span></label>
+                                    <input type="tel" class="form-control" name="phone" pattern="[0-9]{10}" placeholder="e.g., +91 9876543210" required>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- UPDATED ROW WITH USER TYPE DROPDOWN -->
+                        <div class="row">
+                            <div class="col-lg-6">
+                                <div class="form-group">
+                                    <label class="form-label">User Type <span class="text-danger">*</span></label>
+                                    <select class="form-select" name="userType" required>
+                                        <option value="">Choose User Type</option>
+                                        <option value="Student">🎓 Student</option>
+                                        <option value="Employee">💼 Employee</option>
+                                        <option value="HOD">👨‍💼 Head of Department (HOD)</option>
+                                    </select>
+                                </div>
+                            </div>
+
+                            <div class="col-lg-6">
+                                <div class="form-group">
+                                    <label class="form-label">Department <span class="text-danger">*</span></label>
+                                    <select class="form-select" name="department" required>
+                                        <option value="">Choose Department</option>
+                                        <option value="IT">💻 Mass Com</option>
+                                        <option value="Network">🌐 CSA</option>
+                                        <option value="Billing">💳 APR</option>
+                                        <option value="HR">👥 BBA</option>
+
+                                        <option value="Other">📋 Other</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-lg-6">
+                                <div class="form-group priority-section">
+                                    <label class="form-label">Priority Level <span class="text-danger">*</span></label>
+
+                                    <div class="priority-group">
+
+                                        <input type="radio" id="low" name="priority" value="LOW" checked hidden>
+                                        <label for="low" class="priority-btn">
+                                            <i class="fas fa-circle text-success me-2"></i>Low
+                                        </label>
+
+                                        <input type="radio" id="medium" name="priority" value="MEDIUM" hidden>
+                                        <label for="medium" class="priority-btn">
+                                            <i class="fas fa-minus text-warning me-2"></i>Medium
+                                        </label>
+
+                                        <input type="radio" id="high" name="priority" value="HIGH" hidden>
+                                        <label for="high" class="priority-btn">
+                                            <i class="fas fa-exclamation-triangle text-danger me-2"></i>High
+                                        </label>
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="form-label">Detailed Description <span class="text-danger">*</span></label>
+                            <textarea class="form-control" name="description" placeholder="Please describe your issue in detail. Include dates, times, what you've tried, screenshots if possible..." required></textarea>
+                            <div class="form-text mt-2">
+                                <i class="fas fa-info-circle me-1"></i>Be specific - helps us resolve faster
+                            </div>
+                        </div>
+
+                        <div class="form-buttons d-flex justify-content-end gap-4 flex-wrap">
+                            <a href="/" class="btn-cancel-custom">
+                                <i class="fas fa-times-circle me-2"></i>Cancel
+                            </a>
+                            <button type="submit" class="btn btn-submit">
+                                <i class="fas fa-paper-plane me-2"></i>Submit
+                                Complaint
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Footer -->
+<footer>
+    <div class="container text-center">
+        <div class="footer-links mb-4">
+            <a href="#"><i class="fas fa-info-circle me-2"></i>About</a>
+            <a href="#"><i class="fas fa-shield-alt me-2"></i>Privacy Policy</a>
+            <a href="#"><i class="fas fa-envelope me-2"></i>Contact</a>
+        </div>
+        <p class="mb-0 opacity-75">&copy; 2026 TechComp. All rights reserved. | Built with ❤️ for better service</p>
+    </div>
+</footer>
+
+<!-- Bootstrap JS -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+<!-- Custom JS - PERFECT FUNCTIONALITY -->
+<script>
+    // Form submission with validation & success animation
+
+    // Auto-resize textarea
+    document.querySelector('textarea').addEventListener('input', function() {
+        this.style.height = 'auto';
+        this.style.height = this.scrollHeight + 'px';
+    });
+
+    // Form input focus animation
+    document.querySelectorAll('.form-control, .form-select').forEach(input => {
+        input.addEventListener('focus', function() {
+            this.parentElement.style.transform = 'scale(1.02)';
+        });
+        input.addEventListener('blur', function() {
+            this.parentElement.style.transform = 'scale(1)';
+        });
+    });
+</script>
+
+</body>
+</html>

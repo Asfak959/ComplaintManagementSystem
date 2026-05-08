@@ -1,0 +1,488 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Login - TechComp</title>
+
+    <!-- Bootstrap 5 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Google Fonts: Poppins -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(rgba(30, 30, 47, 0.98), rgba(50, 50, 93, 0.98)),
+            url('https://images.unsplash.com/photo-1519389950473-47ba0277781c?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+
+        /* Navbar - EXACT SAME */
+        .navbar {
+            background: linear-gradient(135deg, #1e1e2f 0%, #32325d 100%);
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            padding: 15px 0;
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 1000;
+            backdrop-filter: blur(10px);
+        }
+        .navbar-brand {
+            font-weight: 700;
+            font-size: 1.5rem;
+            letter-spacing: 1px;
+            color: white !important;
+        }
+
+        /* Admin Login Container */
+        .admin-login-container {
+            display: flex;
+            max-width: 1000px;
+            width: 100%;
+            gap: 160px;
+            align-items: center;
+        }
+
+        /* Left Side - Admin Visual */
+        .admin-visual-section {
+            flex: 1;
+            min-width: 350px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            opacity: 0;
+            animation: slideInLeft 0.8s ease forwards;
+        }
+
+        .admin-visual-brand {
+            margin-bottom: -29px;
+            margin-top: 66px;
+        }
+
+        .admin-visual-logo {
+            font-size: 3.5rem;
+            font-weight: 700;
+            /* PROFESSIONAL BLUE */
+            background: linear-gradient(135deg, #3498db, #2980b9);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            letter-spacing: -2px;
+            margin-bottom: 10px;
+        }
+
+        .admin-visual-tagline {
+            font-size: 1.1rem;
+            color: rgba(255,255,255,0.9);
+            font-weight: 400;
+            text-align: center;
+            max-width: 280px;
+            line-height: 1.6;
+        }
+
+        /* PROFESSIONAL PHONE MOCKUP */
+        .admin-phone-mockup {
+            width: 320px;
+            height: 640px;
+            /* PROFESSIONAL DARK BLUE/BLACK */
+            background: linear-gradient(145deg, #1a1a2e, #16213e);
+            border-radius: 40px;
+            position: relative;
+            box-shadow:
+                    0 30px 60px rgba(0,0,0,0.4),
+                    inset 0 2px 4px rgba(255,255,255,0.1);
+            margin: 40px 0;
+        }
+
+        .admin-phone-mockup::before {
+            content: '';
+            position: absolute;
+            top: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 140px;
+            height: 28px;
+            /* PROFESSIONAL SILVER NOTCH */
+            background: rgba(255,255,255,0.15);
+            border-radius: 20px;
+            backdrop-filter: blur(10px);
+        }
+
+        .admin-phone-screen {
+            position: absolute;
+            top: 45px;
+            left: 12px;
+            right: 12px;
+            bottom: 45px;
+            background: rgba(255,255,255,0.95);
+            border-radius: 25px;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .admin-phone-app {
+            width: 280px;
+            height: 500px;
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+            position: relative;
+            overflow: hidden;
+        }
+
+        /* Right Side - Admin Login Form */
+        .admin-login-section {
+            background: white;
+            border-radius: 4px;
+            padding: 40px 40px 30px;
+            width: 350px;
+            box-shadow: 0 8px 32px rgba(0,0,0,0.12);
+            opacity: 0;
+            animation: slideInRight 0.8s ease 0.2s forwards;
+        }
+
+        /* Admin Form Header */
+        .admin-form-header {
+            text-align: center;
+            margin-bottom: 28px;
+        }
+
+        .admin-form-logo {
+            width: 60px;
+            height: 60px;
+            /* PROFESSIONAL BLUE */
+            background: linear-gradient(135deg, #2c3e50, #34495e);
+            border-radius: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 16px;
+            box-shadow: 0 8px 24px rgba(44, 62, 80, 0.4);
+        }
+
+        .admin-form-logo i {
+            font-size: 1.6rem;
+            color: white;
+        }
+
+        .admin-form-title {
+            font-size: 1.6rem;
+            font-weight: 700;
+            color: #1e1e2f;
+            margin-bottom: 4px;
+        }
+
+        .admin-form-subtitle {
+            color: #8e8e8e;
+            font-size: 0.95rem;
+            font-weight: 400;
+        }
+
+        /* Form Styles */
+        .admin-form-group {
+            margin-bottom: 16px;
+        }
+
+        .admin-form-control {
+            width: 100%;
+            padding: 14px 16px;
+            border: 1px solid #dbdbdb;
+            border-radius: 4px;
+            font-size: 0.95rem;
+            font-weight: 500;
+            background: #fafafa;
+            transition: all 0.2s ease;
+            color: #262626;
+        }
+
+        .admin-form-control:focus {
+            outline: none;
+            border-color: #3498db;
+            background: white;
+            box-shadow: 0 0 0 2px rgba(52, 152, 219, 0.15);
+        }
+
+        .admin-form-control::placeholder {
+            color: #8e8e8e;
+        }
+
+        /* PROFESSIONAL ADMIN BUTTON */
+        .btn-admin-login {
+            width: 100%;
+            padding: 10px;
+            /* PROFESSIONAL BLUE */
+            background: linear-gradient(135deg, #3498db 0%, #2980b9 100%);
+            border: none;
+            border-radius: 6px;
+            font-weight: 600;
+            font-size: 0.95rem;
+            color: white;
+            margin-bottom: 16px;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            height: 48px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+        }
+
+        .btn-admin-login:hover {
+            transform: translateY(-1px);
+            box-shadow: 0 8px 20px rgba(52, 152, 219, 0.4);
+            color: white !important;
+        }
+
+        .btn-user-login {
+            width: 100%;
+            padding: 10px;
+            background: #ffc107;
+            color: #1e1e2f;
+            border: none;
+            border-radius: 6px;
+            font-weight: 600;
+            font-size: 0.95rem;
+            height: 48px;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            margin-bottom: 20px;
+        }
+
+        .btn-user-login:hover {
+            background: #ffcd39;
+            transform: translateY(-1px);
+            box-shadow: 0 6px 16px rgba(255, 193, 7, 0.3);
+            color: #1e1e2f !important;
+        }
+
+        /* Divider */
+        .divider {
+            text-align: center;
+            margin: 20px 0;
+            color: #8e8e8e;
+            font-size: 0.85rem;
+            font-weight: 500;
+            position: relative;
+        }
+
+        .divider::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 0;
+            right: 0;
+            height: 1px;
+            background: #dbdbdb;
+        }
+
+        .divider span {
+            background: white;
+            padding: 0 20px;
+        }
+
+        /* Footer */
+        .admin-form-footer {
+            text-align: center;
+        }
+
+        .admin-form-footer p {
+            color: #8e8e8e;
+            font-size: 0.85rem;
+            margin-bottom: 12px;
+        }
+
+        .user-login-link {
+            color: #6c63ff;
+            font-weight: 600;
+            text-decoration: none;
+            font-size: 0.9rem;
+        }
+
+        .user-login-link:hover {
+            text-decoration: underline;
+        }
+
+        /* Animations */
+        @keyframes slideInLeft {
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        @keyframes slideInRight {
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        /* Responsive */
+        @media (max-width: 992px) {
+            .admin-login-container {
+                flex-direction: column;
+                gap: 30px;
+            }
+
+            .admin-visual-section {
+                min-width: auto;
+            }
+
+            .admin-login-section {
+                width: 100%;
+                max-width: 400px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .admin-phone-mockup {
+                width: 280px;
+                height: 560px;
+            }
+        }
+    </style>
+</head>
+<body>
+<!-- Navbar -->
+<nav class="navbar navbar-expand-lg navbar-dark sticky-top">
+    <div class="container">
+        <a class="navbar-brand" href="/">
+            <i class="fas fa-rocket me-2"></i>🚀 TechComp
+        </a>
+    </div>
+</nav>
+
+<!-- Admin Login Layout -->
+<div class="admin-login-container">
+
+    <!-- Left Admin Visual -->
+    <div class="admin-visual-section" style="transform: translateX(-20px);">
+        <div class="admin-visual-brand">
+            <div class="admin-visual-logo">Admin Panel</div>
+            <p class="admin-visual-tagline">
+                Complete complaint management system.
+                <br>Analytics • Reports • User Management.
+            </p>
+        </div>
+
+        <!-- PROFESSIONAL PHONE MOCKUP -->
+        <div class="admin-phone-mockup">
+            <div class="admin-phone-screen">
+                <div class="admin-phone-app">
+                    <div style="padding: 30px; text-align: center; height: 100%; display: flex; flex-direction: column; justify-content: center;">
+                        <div style="width: 60px; height: 60px; background: linear-gradient(135deg, #3498db, #2980b9); border-radius: 16px; margin: 0 auto 20px; display: flex; align-items: center; justify-content: center;">
+                            <i class="fas fa-tachometer-alt" style="color: white; font-size: 1.4rem;"></i>
+                        </div>
+                        <h3 style="color: #1e1e2f; font-size: 1.1rem; margin-bottom: 8px;">Admin Dashboard</h3>
+                        <p style="color: #636e72; font-size: 0.85rem;">Pending: 47 | Resolved: 200</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Right Admin Login Form -->
+    <div class="admin-login-section">
+        <div class="admin-form-header">
+            <div class="admin-form-logo">
+                <i class="fas fa-user-shield"></i>
+            </div>
+            <h2 class="admin-form-title">Admin Login</h2>
+            <p class="admin-form-subtitle">Access Admin Dashboard</p>
+        </div>
+
+        <form id="adminLoginForm" method="post" action="/AdminLogin">
+            <div class="admin-form-group">
+                <input type="text" class="admin-form-control" id="adminId" name="adminId"
+                       placeholder="Admin ID (ADMIN001)" required>
+            </div>
+
+            <div class="admin-form-group">
+                <input type="password" class="admin-form-control" id="adminPassword" name="password"
+                       placeholder="Password" required>
+            </div>
+
+            <div style="margin-bottom: 20px;">
+                <label class="form-check-label d-flex align-items-center gap-2 mb-3" style="font-size: 0.9rem; color: #262626; font-weight: 500; cursor: pointer;">
+                    <input class="form-check-input" type="checkbox" id="rememberAdmin" style="width: 16px; height: 16px;">
+                    <span>Remember this device</span>
+                </label>
+            </div>
+
+            <button type="submit" class="btn btn-admin-login">
+                <i class="fas fa-sign-in-alt"></i>
+                Admin Login
+            </button>
+        </form>
+
+        <div class="divider">
+            <span>OR</span>
+        </div>
+
+        <a href="/" class="btn btn-user-login">
+            <i class="fas fa-user"></i>
+            User Login
+        </a>
+
+        <div class="admin-form-footer">
+            <p>Back to <a href="/" class="user-login-link">User Login</a></p>
+        </div>
+    </div>
+</div>
+
+<!-- Bootstrap JS -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+<script>
+    // Form submission with demo
+    document.getElementById('adminLoginForm').addEventListener('submit', function(e) {
+        e.preventDefault();
+        const btn = this.querySelector('.btn-admin-login');
+
+        btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Signing In...';
+        btn.disabled = true;
+
+        setTimeout(() => {
+            const adminId = document.getElementById('adminId').value;
+            const password = document.getElementById('adminPassword').value;
+
+            if (adminId === 'ADMIN001' && password === 'admin@123') {
+                window.location.href = '/Admin';
+            } else {
+                btn.innerHTML = '<i class="fas fa-sign-in-alt"></i> Admin Login';
+                btn.disabled = false;
+                alert('❌ Invalid credentials!\n\n👤 Admin ID: ADMIN001\n🔑 Password: admin@123');
+            }
+        }, 1500);
+    });
+
+    // Animations
+    document.querySelector('.admin-visual-section').style.animationDelay = '0.1s';
+    document.querySelector('.admin-login-section').style.animationDelay = '0.3s';
+</script>
+</body>
+</html>

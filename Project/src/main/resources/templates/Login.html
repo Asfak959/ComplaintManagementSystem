@@ -1,0 +1,462 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login - TechComp</title>
+
+    <!-- Bootstrap 5 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Google Fonts: Poppins -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(rgba(30, 30, 47, 0.98), rgba(50, 50, 93, 0.98)),
+            url('https://images.unsplash.com/photo-1519389950473-47ba0277781c?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+
+        /* Navbar - EXACT HOMEPAGE */
+        .navbar {
+            background: linear-gradient(135deg, #1e1e2f 0%, #32325d 100%);
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            padding: 15px 0;
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 1000;
+            backdrop-filter: blur(10px);
+        }
+        .navbar-brand {
+            font-weight: 700;
+            font-size: 1.5rem;
+            letter-spacing: 1px;
+            color: white !important;
+        }
+
+        /* Main Content */
+        .login-container {
+            display: flex;
+            max-width: 1000px;
+            width: 100%;
+            /*gap: 50px;*/
+            /*width: 58%;*/
+            gap: 160px;
+            align-items: center;
+        }
+
+        /* Left Side - Instagram Style Visual */
+        .visual-section {
+            flex: 1;
+            min-width: 350px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            opacity: 0;
+            animation: slideInLeft 0.8s ease forwards;
+        }
+
+        .visual-brand {
+            margin-bottom: -29px;
+            margin-top: 66px;
+        }
+
+        .visual-logo {
+            font-size: 3.5rem;
+            font-weight: 700;
+            background: linear-gradient(135deg, #6c63ff, #ffc107);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            letter-spacing: -2px;
+            margin-bottom: 10px;
+        }
+
+        .visual-tagline {
+            font-size: 1.1rem;
+            color: rgba(255,255,255,0.9);
+            font-weight: 400;
+            text-align: center;
+            max-width: 280px;
+            line-height: 1.6;
+        }
+
+        /* Phone Mockup - Instagram Style */
+        .phone-mockup {
+            width: 320px;
+            height: 640px;
+            background: linear-gradient(145deg, #1a1a2e, #16213e);
+            border-radius: 40px;
+            position: relative;
+            box-shadow:
+                    0 30px 60px rgba(0,0,0,0.4),
+                    inset 0 2px 4px rgba(255,255,255,0.1);
+            margin: 40px 0;
+        }
+
+        .phone-mockup::before {
+            content: '';
+            position: absolute;
+            top: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 140px;
+            height: 28px;
+            background: rgba(255,255,255,0.2);
+            border-radius: 20px;
+            backdrop-filter: blur(10px);
+        }
+
+        .phone-screen {
+            position: absolute;
+            top: 45px;
+            left: 12px;
+            right: 12px;
+            bottom: 45px;
+            background: rgba(255,255,255,0.95);
+            border-radius: 25px;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .phone-app {
+            width: 280px;
+            height: 500px;
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+            position: relative;
+            overflow: hidden;
+        }
+
+        /* Right Side - Login Form */
+        .login-section {
+            background: white;
+            border-radius: 4px;
+            padding: 40px 40px 30px;
+            width: 350px;
+            box-shadow: 0 8px 32px rgba(0,0,0,0.12);
+            opacity: 0;
+            animation: slideInRight 0.8s ease 0.2s forwards;
+        }
+
+        /* Form Header */
+        .form-header {
+            text-align: center;
+            margin-bottom: 28px;
+        }
+
+        .form-logo {
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, #6c63ff, #5a52d5);
+            border-radius: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 16px;
+            box-shadow: 0 8px 24px rgba(108, 99, 255, 0.3);
+        }
+
+        .form-logo i {
+            font-size: 1.6rem;
+            color: white;
+        }
+
+        .form-title {
+            font-size: 1.6rem;
+            font-weight: 700;
+            color: #1e1e2f;
+            margin-bottom: 4px;
+        }
+
+        .form-subtitle {
+            color: #8e8e8e;
+            font-size: 0.95rem;
+            font-weight: 400;
+        }
+
+        /* Form Inputs - Clean Instagram Style */
+        .form-group {
+            margin-bottom: 16px;
+        }
+
+        .form-control {
+            width: 100%;
+            padding: 14px 16px;
+            border: 1px solid #dbdbdb;
+            border-radius: 4px;
+            font-size: 0.95rem;
+            font-weight: 500;
+            background: #fafafa;
+            transition: all 0.2s ease;
+            color: #262626;
+        }
+
+        .form-control:focus {
+            outline: none;
+            border-color: #6c63ff;
+            background: white;
+            box-shadow: 0 0 0 2px rgba(108, 99, 255, 0.15);
+        }
+
+        .form-control::placeholder {
+            color: #8e8e8e;
+        }
+
+        /* Buttons - HOMEPAGE MATCH */
+        .btn-login {
+            width: 100%;
+            padding: 10px;
+            background: linear-gradient(135deg, #6c63ff 0%, #5a52d5 100%);
+            border: none;
+            border-radius: 6px;
+            font-weight: 600;
+            font-size: 0.95rem;
+            color: white;
+            margin-bottom: 16px;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            height: 48px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+        }
+
+        .btn-login:hover {
+            transform: translateY(-1px);
+            box-shadow: 0 8px 20px rgba(108, 99, 255, 0.3);
+            color: white !important;
+        }
+
+        .btn-admin {
+            width: 100%;
+            padding: 10px;
+            background: #ffc107;
+            color: #1e1e2f;
+            border: none;
+            border-radius: 6px;
+            font-weight: 600;
+            font-size: 0.95rem;
+            height: 48px;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            margin-bottom: 20px;
+        }
+
+        .btn-admin:hover {
+            background: #ffcd39;
+            transform: translateY(-1px);
+            box-shadow: 0 6px 16px rgba(255, 193, 7, 0.3);
+            color: #1e1e2f !important;
+        }
+
+        /* Divider */
+        .divider {
+            text-align: center;
+            margin: 20px 0;
+            color: #8e8e8e;
+            font-size: 0.85rem;
+            font-weight: 500;
+            position: relative;
+        }
+
+        .divider::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 0;
+            right: 0;
+            height: 1px;
+            background: #dbdbdb;
+        }
+
+        .divider span {
+            background: white;
+            padding: 0 20px;
+        }
+
+        /* Footer Links */
+        .form-footer {
+            text-align: center;
+        }
+
+        .form-footer p {
+            color: #8e8e8e;
+            font-size: 0.85rem;
+            margin-bottom: 12px;
+        }
+
+        .signup-link {
+            color: #6c63ff;
+            font-weight: 600;
+            text-decoration: none;
+            font-size: 0.9rem;
+        }
+
+        .signup-link:hover {
+            text-decoration: underline;
+        }
+
+        /* Animations */
+        @keyframes slideInLeft {
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        @keyframes slideInRight {
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        /* Responsive - Instagram Style */
+        @media (max-width: 992px) {
+            .login-container {
+                flex-direction: column;
+                gap: 30px;
+            }
+
+            .visual-section {
+                min-width: auto;
+            }
+
+            .login-section {
+                width: 100%;
+                max-width: 400px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .phone-mockup {
+                width: 280px;
+                height: 560px;
+            }
+        }
+    </style>
+</head>
+<body>
+<!-- Navbar - HOMEPAGE MATCH -->
+<nav class="navbar navbar-expand-lg navbar-dark sticky-top">
+    <div class="container">
+        <a class="navbar-brand" href="/">
+            <i class="fas fa-rocket me-2"></i>🚀 TechComp
+        </a>
+    </div>
+</nav>
+
+<!-- Main Login Layout -->
+<div class="login-container">
+
+    <!-- Left Visual Section - INSTAGRAM STYLE -->
+    <div class="visual-section" style="transform: translateX(-20px);">
+        <div class="visual-brand">
+            <div class="visual-logo">TechComp</div>
+            <p class="visual-tagline">
+                Track your complaints and get instant solutions.
+                <br>Simple. Fast. Reliable.
+            </p>
+        </div>
+
+        <!-- Phone Mockup -->
+        <div class="phone-mockup">
+            <div class="phone-screen">
+                <div class="phone-app">
+                    <!-- App preview content -->
+                    <div style="padding: 30px; text-align: center; height: 100%; display: flex; flex-direction: column; justify-content: center;">
+                        <div style="width: 60px; height: 60px; background: linear-gradient(135deg, #6c63ff, #5a52d5); border-radius: 16px; margin: 0 auto 20px; display: flex; align-items: center; justify-content: center;">
+                            <i class="fas fa-file-alt" style="color: white; font-size: 1.4rem;"></i>
+                        </div>
+                        <h3 style="color: #1e1e2f; font-size: 1.1rem; margin-bottom: 8px;">Your Complaints</h3>
+                        <p style="color: #636e72; font-size: 0.85rem;">Track & Resolve Instantly</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Right Login Form -->
+    <div class="login-section">
+        <div class="form-header">
+            <div class="form-logo">
+                <i class="fas fa-shield-alt"></i>
+            </div>
+            <h2 class="form-title" >Log in</h2>
+            <p class="form-subtitle">Access your TechComp account</p>
+        </div>
+
+        <form id="loginForm" method="post" action="/login">
+            <div class="form-group">
+                <input type="email" name="username" class="form-control" id="email" placeholder="Email" required>
+            </div>
+
+            <div class="form-group">
+                <input type="password" name="password" class="form-control" id="password" placeholder="Password" required>
+            </div>
+
+            <div style="margin-bottom: 20px;">
+                <label class="form-check-label d-flex align-items-center gap-2 mb-3" style="font-size: 0.9rem; color: #262626; font-weight: 500; cursor: pointer;">
+                    <input class="form-check-input" type="checkbox" id="remember" style="width: 16px; height: 16px;">
+                    <span>Remember me</span>
+                </label>
+                <a href="#" class="forgot-password" style="font-size: 0.85rem; color: #00376b;">Forgot password?</a>
+            </div>
+
+            <button type="submit" class="btn btn-login">
+                <i class="fas fa-arrow-right"></i>
+                Log in
+            </button>
+        </form>
+
+        <div class="divider">
+            <span>OR</span>
+        </div>
+
+        <a href="/Adminlogin" class="btn btn-admin">
+            <i class="fas fa-user-shield"></i>
+            Admin Login
+        </a>
+
+        <div class="form-footer">
+            <p>Don't have an account? <a href="/register" class="signup-link">Sign up</a></p>
+        </div>
+    </div>
+</div>
+
+<!-- Bootstrap JS -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+<script>
+
+
+</script>
+</body>
+</html>
