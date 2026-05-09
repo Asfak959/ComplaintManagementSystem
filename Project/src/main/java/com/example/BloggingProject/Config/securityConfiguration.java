@@ -22,14 +22,17 @@ public class securityConfiguration {
         http.
                 csrf().disable().
                 authorizeHttpRequests(auth -> auth.
-                        requestMatchers("/login", "/register", "/Adminlogin").
+                        requestMatchers("/login", "/register", "/Adminlogin","/userCreated").
                         permitAll().
+                        requestMatchers("/Admin").
+                        hasRole("ADMIN").requestMatchers("/").
+                        hasAnyRole("USER", "ADMIN").
                         anyRequest().
                         authenticated()).
                 formLogin(form -> form.
                         loginPage("/login").
                         loginProcessingUrl("/login").
-                        defaultSuccessUrl("/", true).
+                        defaultSuccessUrl("/dashboard", true).
                         permitAll()
                 ).authenticationProvider(daoAuthenticationProvider());
 
