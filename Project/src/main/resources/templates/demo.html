@@ -2,1077 +2,286 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta content="width=device-width, initial-scale=1.0" name="viewport">
-    <title>Admin Dashboard - TechComplaint</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Awesome Blog</title>
+
+    <!-- Bootstrap 5 CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
-          rel="stylesheet">
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+
+    <!-- Google Fonts: Poppins -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+
+    <!-- Font Awesome for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 
     <style>
-        :root {
-            --primary-color: #6c63ff;
-            --secondary-color: #5a52d5;
-            --sidebar-bg: #1e1e2f;
-            --bg-color: #f4f6f9;
-            --text-dark: #2d3436;
-            --text-light: #b2bec3;
-            --card-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
-        }
-
-        * {
-            font-family: 'Poppins', sans-serif;
-        }
-
         body {
-            background-color: var(--bg-color);
-            color: var(--text-dark);
+            font-family: 'Poppins', sans-serif;
+            background-color: #f4f6f9;
+            color: #333;
         }
 
-        /* Sidebar */
-        .sidebar {
-            height: 100vh;
-            width: 260px;
-            position: fixed;
-            top: 0;
-            left: 0;
-            background: linear-gradient(135deg, var(--sidebar-bg) 0%, #32325d 100%);
-            box-shadow: 4px 0 15px rgba(0, 0, 0, 0.1);
-            z-index: 1000;
-            padding-top: 20px;
+        /* Navbar */
+        .navbar {
+            background: linear-gradient(135deg, #1e1e2f 0%, #32325d 100%);
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            padding: 15px 0;
         }
-
-        .sidebar-brand {
+        .navbar-brand {
+            font-weight: 700;
             font-size: 1.5rem;
-            font-weight: 700;
+            letter-spacing: 1px;
+            color: white !important;
+        }
+
+        /* Admin Button */
+        .btn-admin {
+            background-color: #ffc107;
+            color: #1e1e2f;
+            border: none;
+            padding: 8px 20px;
+            border-radius: 50px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            text-decoration: none;
+        }
+        .btn-admin:hover {
+            background-color: #ffcd39;
+            color: #000;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 10px rgba(255, 193, 7, 0.4);
+        }
+
+        /* New Complaint Button */
+        .btn-primary-custom {
+            background-color: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            padding: 8px 20px;
+            border-radius: 50px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            text-decoration: none;
             color: white;
-            text-align: center;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .btn-primary-custom:hover {
+            background-color: white;
+            color: #000 !important;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 10px rgba(255, 255, 255, 0.3);
+        }
+
+        /* Hero Section */
+        .hero-section {
+            background: linear-gradient(rgba(30, 30, 47, 0.9), rgba(30, 30, 47, 0.9)), url('https://images.unsplash.com/photo-1519389950473-47ba0277781c?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80');
+            background-size: cover;
+            background-position: center;
+            color: white;
+            padding: 80px 0;
             margin-bottom: 40px;
-            display: block;
-            text-decoration: none;
         }
-
-        .sidebar-link {
-            padding: 15px 25px;
-            color: rgba(255, 255, 255, 0.7);
-            text-decoration: none;
-            display: flex;
-            align-items: center;
-            gap: 15px;
-            transition: all 0.3s;
-            border-left: 4px solid transparent;
-        }
-
-        .sidebar-link:hover, .sidebar-link.active {
-            background: rgba(255, 255, 255, 0.1);
-            color: white;
-            border-left-color: var(--primary-color);
-        }
-
-        .main-content {
-            margin-left: 260px;
-            padding: 30px;
-            min-height: 100vh;
-        }
-
-        .topbar {
-            background: white;
-            padding: 15px 30px;
-            border-radius: 15px;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 30px;
-        }
-
-        .page-title {
-            font-size: 1.8rem;
+        .hero-title {
+            font-size: 3rem;
             font-weight: 700;
-            margin-bottom: 30px;
+            margin-bottom: 10px;
+        }
+        .hero-subtitle {
+            font-size: 1.2rem;
+            font-weight: 300;
+            opacity: 0.9;
+        }
+
+        /* Blog Card */
+        .blog-card {
+            border: none;
+            border-radius: 15px;
+            overflow: hidden;
+            transition: all 0.3s ease;
+            background: white;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            margin-bottom: 20px;
+        }
+        .blog-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.1);
+        }
+
+        /* Card Body */
+        .card-custom-body {
+            padding: 25px;
+        }
+
+        .card-title-custom {
+            font-weight: 700;
+            font-size: 1.4rem;
+            margin-bottom: 10px;
             color: #2d3436;
         }
 
-        .stat-card {
-            background: white;
-            border-radius: 20px;
-            padding: 25px;
-            box-shadow: var(--card-shadow);
-            margin-bottom: 20px;
-            transition: transform 0.3s;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .stat-card:hover {
-            transform: translateY(-5px);
-        }
-
-        .stat-icon {
-            width: 55px;
-            height: 55px;
-            border-radius: 15px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 1.5rem;
-        }
-
-        .stat-icon.primary {
-            background: rgba(108, 99, 255, 0.1);
-            color: #6c63ff;
-        }
-
-        .stat-icon.success {
-            background: rgba(46, 213, 115, 0.1);
-            color: #2ed573;
-        }
-
-        .stat-icon.warning {
-            background: rgba(255, 171, 67, 0.1);
-            color: #ffab43;
-        }
-
-        .stat-icon.danger {
-            background: rgba(255, 71, 87, 0.1);
-            color: #ff4757;
-        }
-
-        .table-container {
-            background: white;
-            border-radius: 20px;
-            padding: 30px;
-            box-shadow: var(--card-shadow);
-        }
-
-        .table-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 25px;
-            flex-wrap: wrap;
-            gap: 15px;
-        }
-
-        .filter-group {
-            display: flex;
-            gap: 10px;
-            align-items: center;
-        }
-
-        .filter-dropdown {
-            min-width: 180px;
-            border-radius: 10px;
-            border: 2px solid #e9ecef;
-            padding: 8px 12px;
-            font-weight: 500;
-        }
-
-        .filter-dropdown:focus {
-            border-color: var(--primary-color);
-            box-shadow: 0 0 0 0.2rem rgba(108, 99, 255, 0.15);
-        }
-
-        .btn-filter {
-            background: var(--primary-color);
-            color: white;
-            border: none;
-            padding: 10px 20px;
-            border-radius: 10px;
-            font-weight: 600;
-            transition: all 0.3s;
-        }
-
-        .btn-filter:hover {
-            background: var(--secondary-color);
-            transform: translateY(-2px);
-        }
-
-        .btn-clear {
-            background: #f8f9fa;
-            color: #6c757d;
-            border: 2px solid #e9ecef;
-            padding: 8px 16px;
-            border-radius: 10px;
-            font-weight: 500;
-        }
-
-        .btn-clear:hover {
-            background: #e9ecef;
-            color: #495057;
-        }
-
-        .complaint-table, .users-table {
-            border-collapse: separate;
-            border-spacing: 0 10px;
-            width: 100%;
-        }
-
-        .complaint-table thead th, .users-table thead th {
-            background: #f8f9fa;
-            border: none;
-            padding: 15px;
-            font-weight: 600;
+        .card-text-custom {
             color: #636e72;
-            text-transform: uppercase;
-            font-size: 0.9rem;
+            line-height: 1.6;
+            margin-bottom: 15px;
         }
 
-        .complaint-table tbody tr, .users-table tbody tr {
-            background: white;
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.03);
-            transition: all 0.2s;
+        .meta-info {
+            font-size: 0.85rem;
+            color: #b2bec3;
+            margin-bottom: 15px;
         }
-
-        .complaint-table tbody tr:hover, .users-table tbody tr:hover {
-            transform: scale(1.01);
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
-        }
-
-        .no-results {
-            text-align: center;
-            padding: 60px 20px;
-            color: #6c757d;
-        }
-
-        .no-results i {
-            font-size: 4rem;
-            margin-bottom: 20px;
-            opacity: 0.5;
-        }
-
-        .badge-status {
-            padding: 6px 15px;
-            border-radius: 50px;
-            font-weight: 600;
-            font-size: 0.8rem;
-        }
-
-        .badge-new {
-            background: rgba(108, 99, 255, 0.1);
+        .meta-info i {
             color: #6c63ff;
-        }
-
-        .badge-pending {
-            background: rgba(255, 171, 67, 0.1);
-            color: #ffab43;
-        }
-
-        .badge-progress {
-            background: rgba(30, 144, 255, 0.1);
-            color: #1e90ff;
-        }
-
-        .badge-resolved {
-            background: rgba(46, 213, 115, 0.1);
-            color: #2ed573;
-        }
-
-        .action-btn {
-            width: 35px;
-            height: 35px;
-            border-radius: 8px;
-            border: none;
             margin-right: 5px;
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            cursor: pointer;
         }
 
-        .btn-view {
-            background: rgba(108, 99, 255, 0.1);
+        .badge-category {
+            background-color: #e0eaff;
             color: #6c63ff;
+            padding: 5px 12px;
+            border-radius: 20px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            text-transform: uppercase;
         }
 
-        .btn-view:hover {
-            background: #6c63ff;
-            color: white;
-        }
-
-        .btn-delete {
-            background: rgba(255, 71, 87, 0.1);
-            color: #ff4757;
-        }
-
-        .btn-delete:hover {
-            background: #ff4757;
-            color: white;
-        }
-
-        .btn-add-new {
-            background: var(--primary-color);
+        /* View Complaint Button */
+        .btn-view-complaint {
+            background-color: #6c63ff;
             color: white;
             border: none;
-            padding: 10px 20px;
-            border-radius: 50px;
+            border-radius: 8px;
+            padding: 10px 25px;
             font-weight: 600;
+            font-size: 0.95rem;
+            text-decoration: none;
+            display: inline-block;
+            transition: all 0.3s ease;
         }
-
-        /* Modal Styles */
-        .modal-header {
-            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+        .btn-view-complaint:hover {
+            background-color: #5a52d5;
             color: white;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(108, 99, 255, 0.4);
         }
 
-        .modal-content {
-            border-radius: 15px;
-            box-shadow: var(--card-shadow);
+        /* Footer */
+        footer {
+            background-color: #2d3436;
+            color: #dfe6e9;
+            padding: 40px 0;
+            margin-top: 60px;
         }
-
-        .status-select {
-            border-radius: 10px;
-            border: 2px solid #f0f0f0;
+        .footer-links a {
+            color: #b2bec3;
+            text-decoration: none;
+            margin: 0 10px;
         }
-
-        @media (max-width: 992px) {
-            .sidebar {
-                margin-left: -260px;
-            }
-
-            .main-content {
-                margin-left: 0;
-            }
-
-            .sidebar.active {
-                margin-left: 0;
-            }
-
-            .table-header {
-                flex-direction: column;
-                align-items: stretch;
-            }
-
-            .filter-group {
-                width: 100%;
-                justify-content: space-between;
-            }
+        .footer-links a:hover {
+            color: #6c63ff;
         }
     </style>
 </head>
 <body>
 
-<!-- Sidebar -->
-<div class="sidebar" id="sidebar">
-    <a class="sidebar-brand" href="#"><i class="fas fa-shield-alt me-2"></i>TechComplaint</a>
-    <div class="menu">
-        <a class="sidebar-link active" href="#" onclick="showSection('complaints')"><i class="fas fa-tachometer-alt"></i> Dashboard</a>
-        <a class="sidebar-link" href="#" onclick="showSection('complaints')"><i class="fas fa-inbox"></i> Complaints <span
-                class="badge bg-danger rounded-pill float-end">12</span></a>
-        <a class="sidebar-link" href="#" onclick="showSection('users')"><i class="fas fa-users"></i> Users</a>
-        <a class="sidebar-link" href="#"><i class="fas fa-chart-bar"></i> Reports</a>
-        <a class="sidebar-link" href="#"><i class="fas fa-cog"></i> Settings</a>
-        <div style="margin-top: 100px;"></div>
-        <a class="sidebar-link" href="/"><i class="fas fa-external-link-alt"></i> Visit Website</a>
-        <a class="sidebar-link text-danger" href="#"><i class="fas fa-sign-out-alt"></i> Logout</a>
+<!-- Navigation -->
+<nav class="navbar navbar-expand-lg navbar-dark sticky-top">
+    <div class="container">
+        <a class="navbar-brand" href="/">
+            <i class="fas fa-rocket me-2"></i>🚀 TechComp
+        </a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
+            <a href="/Adminlogin" class="btn btn-admin me-2">
+                <i class="fas fa-user-shield me-2"></i>Admin
+            </a>
+            <a href="/new" class="btn btn-primary-custom">
+                <i class="fas fa-pen-nib me-2"></i>Write New Comp
+            </a>
+        </div>
+    </div>
+</nav>
+
+<!-- Hero Section -->
+<div class="hero-section">
+    <div class="container text-center">
+        <h1 class="hero-title">Explore the Future of Tech</h1>
+        <p class="hero-subtitle">Deep dives, coding tutorials, and industry insights.</p>
     </div>
 </div>
 
 <!-- Main Content -->
-<div class="main-content">
-    <!-- Topbar -->
-    <div class="topbar">
-        <div class="d-flex align-items-center">
-            <button class="btn d-lg-none me-3" onclick="toggleSidebar()">
-                <i class="fas fa-bars fa-lg text-dark"></i>
-            </button>
-            <h4 class="mb-0 fw-bold d-none d-md-block" id="pageSubtitle">Admin Dashboard</h4>
-        </div>
-        <div class="d-flex align-items-center gap-4">
-            <div class="position-relative">
-                <i class="fas fa-bell text-secondary fs-5"></i>
-                <span class="position-absolute top-0 start-100 translate-middle p-1 bg-danger border border-light rounded-circle"></span>
-            </div>
-            <img class="rounded-circle" height="45"
-                 src="https://ui-avatars.com/api/?name=Admin&background=6c63ff&color=fff" style="border: 2px solid var(--primary-color);" width="45">
-        </div>
-    </div>
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-lg-10">
 
-    <!-- Complaints Section -->
-    <div id="complaintsSection">
-        <!-- Page Title -->
-        <div class="d-flex justify-content-between align-items-center mb-4">
-            <h2 class="page-title mb-0">Recent Complaints</h2>
-            <a class="btn-add-new" href="/new" style="text-decoration: none"><i class="fas fa-plus me-2"></i>New Complaint</a>
-        </div>
-
-        <!-- Stats Cards -->
-        <div class="row mb-4">
-            <div class="col-md-6 col-xl-3">
-                <div class="stat-card">
-                    <div class="d-flex justify-content-between">
-                        <div>
-                            <div class="stat-title">Total Complaints</div>
-                            <div class="stat-number" id="totalComplaint">1,245</div>
-                            <small class="text-success"><i class="fas fa-arrow-up"></i> 12% ↑</small>
-                        </div>
-                        <div class="stat-icon primary"><i class="fas fa-inbox"></i></div>
+            <!-- Card 1 -->
+            <div class="blog-card">
+                <div class="card-custom-body">
+                    <div class="d-flex justify-content-between align-items-center mb-3">
+                        <span class="badge-category">Complaint</span>
+                        <small class="text-muted">15 Jan, 2025</small>
                     </div>
-                </div>
-            </div>
-            <div class="col-md-6 col-xl-3">
-                <div class="stat-card">
-                    <div class="d-flex justify-content-between">
-                        <div>
-                            <div class="stat-title">Pending</div>
-                            <div class="stat-number">32</div>
-                            <small class="text-warning"><i class="fas fa-minus"></i> Stable</small>
-                        </div>
-                        <div class="stat-icon warning"><i class="fas fa-clock"></i></div>
+                    <h2 class="card-title-custom">Internet Connection Issue</h2>
+                    <div class="meta-info">
+                        <span><i class="fas fa-user"></i> Rahul Kumar</span>
+                        <span class="mx-2">|</span>
+                        <span><i class="fas fa-clock"></i> 5 min read</span>
                     </div>
+                    <p class="card-text-custom">My internet connection is not working properly since last week. I have tried restarting the router but the issue persists.</p>
+                    <!-- Fixed onclick here -->
+                    <a href="/Complaint_status" class="btn btn-view-complaint">
+                        <i class="fas fa-eye me-2"></i>View Complaint
+                    </a>
                 </div>
             </div>
-            <div class="col-md-6 col-xl-3">
-                <div class="stat-card">
-                    <div class="d-flex justify-content-between">
-                        <div>
-                            <div class="stat-title">In Progress</div>
-                            <div class="stat-number">15</div>
-                            <small class="text-primary"><i class="fas fa-arrow-down"></i> 5% ↓</small>
-                        </div>
-                        <div class="stat-icon danger"><i class="fas fa-spinner"></i></div>
+
+            <!-- Card 2 -->
+            <div class="blog-card">
+                <div class="card-custom-body">
+                    <div class="d-flex justify-content-between align-items-center mb-3">
+                        <span class="badge-category">Complaint</span>
+                        <small class="text-muted">14 Jan, 2025</small>
                     </div>
-                </div>
-            </div>
-            <div class="col-md-6 col-xl-3">
-                <div class="stat-card">
-                    <div class="d-flex justify-content-between">
-                        <div>
-                            <div class="stat-title">Resolved</div>
-                            <div class="stat-number">1,198</div>
-                            <small class="text-success"><i class="fas fa-check"></i> 85%</small>
-                        </div>
-                        <div class="stat-icon success"><i class="fas fa-check-circle"></i></div>
+                    <h2 class="card-title-custom">Billing Problem</h2>
+                    <div class="meta-info">
+                        <span><i class="fas fa-user"></i> John Doe</span>
+                        <span class="mx-2">|</span>
+                        <span><i class="fas fa-clock"></i> 3 min read</span>
                     </div>
-                </div>
-            </div>
-        </div>
-
-        <!-- Complaints Table -->
-        <div class="table-container">
-            <div class="table-header">
-                <h4>Recent Complaints</h4>
-                <div class="filter-group">
-                    <select class="form-select filter-dropdown" id="complaintUserTypeFilter">
-                        <option value="">All Users</option>
-                        <option value="STUDENT">Student</option>
-                        <option value="EMPLOYEE">Employee</option>
-                        <option value="HOD">HOD</option>
-                        <option value="STAFF">Staff</option>
-                    </select>
-                    <button class="btn btn-filter" onclick="applyComplaintFilter()">
-                        <i class="fas fa-filter me-1"></i>Filter
-                    </button>
-                    <button class="btn btn-clear" onclick="clearComplaintFilter()">
-                        <i class="fas fa-times me-1"></i>Clear
-                    </button>
+                    <p class="card-text-custom">I was charged twice for my monthly subscription. Please look into this matter and refund the extra amount.</p>
+                    <a href="view_post.html" class="btn btn-view-complaint">
+                        <i class="fas fa-eye me-2"></i>View Complaint
+                    </a>
                 </div>
             </div>
 
-            <div class="table-responsive">
-                <table class="table complaint-table">
-                    <thead>
-                    <tr>
-                        <th>ID</th>
-                        <th>Title</th>
-                        <th>User</th>
-                        <th>Date</th>
-                        <th>Priority</th>
-                        <th>Status</th>
-                        <th>Actions</th>
-                    </tr>
-                    </thead>
-                    <tbody id="CompBody">
-                        <!-- Dynamic content loaded here -->
-                    </tbody>
-                </table>
-            </div>
-
-            <div id="complaintTableFooter" class="d-flex justify-content-between align-items-center mt-4">
-                <small class="text-muted" id="complaintShowingText">Showing 1-10 of 1,245 complaints</small>
-                <nav>
-                    <ul class="pagination mb-0">
-                        <li class="page-item"><a class="page-link" href="#">Previous</a></li>
-                        <li class="page-item active"><a class="page-link" href="#">1</a></li>
-                        <li class="page-item"><a class="page-link" href="#">2</a></li>
-                        <li class="page-item"><a class="page-link" href="#">3</a></li>
-                        <li class="page-item"><a class="page-link" href="#">Next</a></li>
-                    </ul>
-                </nav>
-            </div>
-        </div>
-    </div>
-
-    <!-- Users Section -->
-    <div id="usersSection" style="display: none;">
-        <!-- Page Title -->
-        <div class="d-flex justify-content-between align-items-center mb-4">
-            <h2 class="page-title mb-0">All Users</h2>
-            <button class="btn-add-new" onclick="showAddUserModal()">
-                <i class="fas fa-plus me-2"></i>Add User
-            </button>
-        </div>
-
-        <!-- Users Table -->
-        <div class="table-container">
-            <div class="table-header">
-                <h4>All Users</h4>
-                <div class="filter-group">
-                    <select class="form-select filter-dropdown" id="userTypeFilter">
-                        <option value="">All Users</option>
-                        <option value="STUDENT">Student</option>
-                        <option value="EMPLOYEE">Employee</option>
-                        <option value="HOD">HOD</option>
-                        <option value="STAFF">Staff</option>
-                    </select>
-                    <button class="btn btn-filter" onclick="applyUserFilter()">
-                        <i class="fas fa-filter me-1"></i>Filter
-                    </button>
-                    <button class="btn btn-clear" onclick="clearUserFilter()">
-                        <i class="fas fa-times me-1"></i>Clear
-                    </button>
-                </div>
-            </div>
-
-            <div class="table-responsive">
-                <table class="table users-table">
-                    <thead>
-                    <tr>
-                        <th>ID</th>
-                        <th>Name</th>
-                        <th>Email</th>
-                        <th>User Type</th>
-                        <th>Department</th>
-                        <th>Status</th>
-                        <th>Actions</th>
-                    </tr>
-                    </thead>
-                    <tbody id="UserBody">
-                        <!-- Dynamic content loaded here -->
-                    </tbody>
-                </table>
-            </div>
-
-            <div id="userTableFooter" class="d-flex justify-content-between align-items-center mt-4" style="display: none;">
-                <small class="text-muted" id="userShowingText">Showing 1-10 of 0 users</small>
-                <nav>
-                    <ul class="pagination mb-0">
-                        <li class="page-item"><a class="page-link" href="#">Previous</a></li>
-                        <li class="page-item active"><a class="page-link" href="#">1</a></li>
-                        <li class="page-item"><a class="page-link" href="#">2</a></li>
-                        <li class="page-item"><a class="page-link" href="#">3</a></li>
-                        <li class="page-item"><a class="page-link" href="#">Next</a></li>
-                    </ul>
-                </nav>
-            </div>
         </div>
     </div>
 </div>
 
-<!-- Complaint Modal -->
-<div class="modal fade" id="complaintModal" tabindex="-1">
-    <div class="modal-dialog modal-lg">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title"><i class="fas fa-eye me-2"></i>Complaint Details</h5>
-                <button class="btn-close btn-close-white" data-bs-dismiss="modal" type="button"></button>
-            </div>
-            <div class="modal-body">
-                <div class="row mb-4">
-                    <div class="col-md-6">
-                        <strong>Complaint ID:</strong><br>
-                        <span class="text-primary fw-bold fs-5" id="modalComplaintId">#CM-1001</span>
-                    </div>
-                    <div class="col-md-6">
-                        <strong>Status:</strong><br>
-                        <select class="form-select status-select mt-2" id="statusSelect">
-                            <option value="NEW">New</option>
-                            <option value="PENDING">Pending</option>
-                            <option value="IN_PROGRESS">In Progress</option>
-                            <option value="RESOLVED">Resolved</option>
-                        </select>
-                    </div>
-                </div>
-
-                <div class="row mb-4">
-                    <div class="col-md-6">
-                        <strong>User:</strong><br>
-                        <div class="d-flex align-items-center mt-2" id="modalUserInfo">
-                            <img class="rounded-circle me-2"
-                                 src="https://ui-avatars.com/api/?name=Rahul+Sharma&background=random" width="40">
-                            <div>
-                                <div class="fw-bold">Rahul Sharma</div>
-                                <small class="text-muted">rahul@example.com</small>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-6">
-                        <strong>Created:</strong><br>
-                        <span class="text-muted" id="modalCreatedAt">Oct 24, 2024 10:30 AM</span>
-                    </div>
-                </div>
-
-                <div class="mb-4">
-                    <strong>Title:</strong><br>
-                    <h5 class="mt-2 text-dark" id="modalTitle">Internet Connection Issue</h5>
-                </div>
-
-                <div class="mb-4">
-                    <strong>Description:</strong><br>
-                    <p class="mt-2 p-3 bg-light rounded" id="modalDescription">
-                        My internet connection is not working since yesterday evening. I have tried restarting the
-                        router multiple times but the issue persists.
-                        Please send a technician to check the line.
-                    </p>
-                </div>
-
-                <div class="row">
-                    <div class="col-md-6">
-                        <strong>Priority:</strong><br>
-                        <span class="badge bg-danger fs-6 px-3 py-2 mt-2" id="modalPriority">HIGH</span>
-                    </div>
-                    <div class="col-md-6">
-                        <strong>Last Updated:</strong><br>
-                        <span class="text-muted" id="modalUpdatedAt">Oct 24, 2024 11:15 AM</span>
-                    </div>
-                </div>
-            </div>
-            <div class="modal-footer">
-                <button class="btn btn-secondary" data-bs-dismiss="modal" type="button">Close</button>
-                <button class="btn btn-primary" onclick="updateStatus()" type="button">
-                    <i class="fas fa-save me-2"></i>Update Status
-                </button>
-            </div>
+<!-- Footer -->
+<footer>
+    <div class="container text-center">
+        <div class="footer-links mb-3">
+            <a href="#">About</a>
+            <a href="#">Privacy Policy</a>
+            <a href="#">Contact</a>
         </div>
+        <p class="mb-0">&copy; 2026 TechComplaint. All rights reserved.</p>
     </div>
-</div>
+</footer>
 
-<!-- User Modal -->
-<div class="modal fade" id="userModal" tabindex="-1">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title"><i class="fas fa-user me-2"></i>User Details</h5>
-                <button class="btn-close" data-bs-dismiss="modal" type="button"></button>
-            </div>
-            <div class="modal-body">
-                <div id="userModalContent">
-                    <!-- Dynamic content -->
-                </div>
-            </div>
-            <div class="modal-footer">
-                <button class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-            </div>
-        </div>
-    </div>
-</div>
-
+<!-- Bootstrap JS -->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+<!-- Custom JS -->
 <script>
-    let ComplaintsData = [];
-    let UsersData = [];
-    let filteredComplaints = [];
-    let filteredUsers = [];
-    let currentComplaintFilter = '';
-    let currentUserFilter = '';
 
-    // Section management
-    function showSection(section) {
-        // Update sidebar active state
-        document.querySelectorAll('.sidebar-link').forEach(link => link.classList.remove('active'));
-        event.target.closest('.sidebar-link').classList.add('active');
-        
-        // Show/hide sections
-        document.getElementById('complaintsSection').style.display = section === 'complaints' ? 'block' : 'none';
-        document.getElementById('usersSection').style.display = section === 'users' ? 'block' : 'none';
-        
-        // Update page subtitle
-        document.getElementById('pageSubtitle').textContent = section === 'complaints' ? 'Admin Dashboard' : 'Users Management';
-        
-        if (section === 'users' && UsersData.length === 0) {
-            loadUsersData();
-        }
-    }
-
-    async function loadData() {
-        try {
-            let response = await fetch("http://localhost:8080/ListOfStudents");
-            let data = await response.json();
-
-            ComplaintsData = data;
-            filteredComplaints = data;
-            renderComplaintTable(data);
-            updateComplaintStats(data.length);
-        } catch (error) {
-            console.error('Error loading complaints:', error);
-            showNoComplaintResults('Failed to load complaints. Please try again.');
-        }
-    }
-
-    async function loadUsersData() {
-        try {
-            // Mock API call - replace with your actual users endpoint
-            let response = await fetch("http://localhost:8080/ListOfUsers");
-            let data = await response.json();
-
-            UsersData = data;
-            filteredUsers = data;
-            renderUserTable(data);
-        } catch (error) {
-            console.error('Error loading users:', error);
-            // Mock data for demo
-            UsersData = generateMockUsers(50);
-            filteredUsers = [...UsersData];
-            renderUserTable(UsersData);
-        }
-    }
-
-    function generateMockUsers(count) {
-        const types = ['STUDENT', 'EMPLOYEE', 'HOD', 'STAFF'];
-        const departments = ['Computer Science', 'Mechanical', 'Civil', 'Electrical', 'IT'];
-        const statuses = ['ACTIVE', 'INACTIVE', 'SUSPENDED'];
-
-        return Array.from({length: count}, (_, i) => ({
-            id: i + 1,
-            name: `User ${i + 1}`,
-            email: `user${i + 1}@example.com`,
-            userType: types[Math.floor(Math.random() * types.length)],
-            department: departments[Math.floor(Math.random() * departments.length)],
-            status: statuses[Math.floor(Math.random() * statuses.length)],
-            createdAt: new Date(Date.now() - Math.random() * 365 * 24 * 60 * 60 * 1000).toISOString()
-        }));
-    }
-
-    function renderComplaintTable(data) {
-        let compBody = document.getElementById("CompBody");
-        compBody.innerHTML = "";
-
-        if (data.length === 0) {
-            showNoComplaintResults(currentComplaintFilter ? `No ${currentComplaintFilter.toLowerCase()} complaints found.` : 'No complaints found.');
-            updateComplaintStats(0);
-            return;
-        }
-
-        data.slice(0, 10).forEach(complaint => {
-            let statusClass = getStatusClass(complaint.status);
-            let priorityClass = getPriorityClass(complaint.priority);
-
-            let Row = document.createElement("tr");
-            Row.innerHTML = getComplaintTableRowHTML(complaint, statusClass, priorityClass);
-            compBody.appendChild(Row);
-        });
-
-        updateComplaintStats(data.length);
-        updateComplaintShowingText(data.length);
-    }
-
-    function renderUserTable(data) {
-        let userBody = document.getElementById("UserBody");
-        userBody.innerHTML = "";
-        const footer = document.getElementById("userTableFooter");
-
-        if (data.length === 0) {
-            showNoUserResults(currentUserFilter ? `No ${currentUserFilter.toLowerCase()} users found.` : 'No users found.');
-            footer.style.display = 'none';
-            return;
-        }
-
-        footer.style.display = 'flex';
-        data.slice(0, 10).forEach(user => {
-            let Row = document.createElement("tr");
-            Row.innerHTML = getUserTableRowHTML(user);
-            userBody.appendChild(Row);
-        });
-
-        updateUserShowingText(data.length);
-    }
-
-    function getStatusClass(status) {
-        switch(status) {
-            case "NEW": return "badge-new";
-            case "PENDING": return "badge-pending";
-            case "IN_PROGRESS": return "badge-progress";
-            case "RESOLVED": return "badge-resolved";
-            default: return "badge-secondary";
-        }
-    }
-
-    function getPriorityClass(priority) {
-        switch(priority) {
-            case "HIGH": return "bg-danger";
-            case "MEDIUM": return "bg-warning text-dark";
-            case "LOW": return "bg-success";
-            default: return "bg-secondary";
-        }
-    }
-
-    function getUserTypeClass(userType) {
-        switch(userType) {
-            case "STUDENT": return "bg-primary";
-            case "EMPLOYEE": return "bg-success";
-            case "HOD": return "bg-warning text-dark";
-            case "STAFF": return "bg-info";
-            default: return "bg-secondary";
-        }
-    }
-
-    function getComplaintTableRowHTML(complaint, statusClass, priorityClass) {
-        return `
-            <td>#CM-${complaint.id}</td>
-            <td>${complaint.title || 'N/A'}</td>
-            <td>
-                <div class="d-flex align-items-center">
-                    <img src="https://ui-avatars.com/api/?name=${complaint.userName || 'User'}&background=random"
-                         class="rounded-circle me-2" width="30" alt="User Avatar">
-                    ${complaint.userName || 'Unknown User'}
-                </div>
-            </td>
-            <td>${complaint.createdAt ? new Date(complaint.createdAt).toLocaleDateString() : 'N/A'}</td>
-            <td>
-                <span class="badge ${priorityClass} px-3 py-2">
-                    ${complaint.priority || 'N/A'}
-                </span>
-            </td>
-            <td>
-                <span class="badge badge-status ${statusClass}">
-                    ${complaint.status || 'N/A'}
-                </span>
-            </td>
-            <td>
-                <button class="action-btn btn-view"
-                        data-bs-toggle="modal"
-                        data-bs-target="#complaintModal"
-                        onclick="openComplaintModal(${complaint.id})">
-                    <i class="fas fa-eye"></i>
-                </button>
-                <button class="action-btn btn-delete" onclick="deleteComplaint(${complaint.id})">
-                    <i class="fas fa-trash"></i>
-                </button>
-            </td>
-        `;
-    }
-
-    function getUserTableRowHTML(user) {
-        const userTypeClass = getUserTypeClass(user.userType);
-        return `
-            <td>#U-${user.id}</td>
-            <td>
-                <div class="d-flex align-items-center">
-                    <img src="https://ui-avatars.com/api/?name=${user.name}&background=random"
-                         class="rounded-circle me-2" width="30" alt="User Avatar">
-                    ${user.name}
-                </div>
-            </td>
-            <td>${user.email}</td>
-            <td>
-                <span class="badge ${userTypeClass} px-3 py-2">
-                    ${user.userType}
-                </span>
-            </td>
-            <td>${user.department || 'N/A'}</td>
-            <td>
-                <span class="badge ${user.status === 'ACTIVE' ? 'bg-success' : 'bg-danger'} px-3 py-2">
-                    ${user.status}
-                </span>
-            </td>
-            <td>
-                <button class="action-btn btn-view" data-bs-toggle="modal" data-bs-target="#userModal"
-                        onclick="openUserModal(${user.id})">
-                    <i class="fas fa-eye"></i>
-                </button>
-                <button class="action-btn btn-delete" onclick="deleteUser(${user.id})">
-                    <i class="fas fa-trash"></i>
-                </button>
-            </td>
-        `;
-    }
-
-    // Complaint Filter Functions
-    function applyComplaintFilter() {
-        const filterValue = document.getElementById('complaintUserTypeFilter').value;
-        currentComplaintFilter = filterValue;
-
-        if (!filterValue) {
-            filteredComplaints = [...ComplaintsData];
-        } else {
-            filteredComplaints = ComplaintsData.filter(complaint => 
-                complaint.userType === filterValue
-            );
-        }
-
-        renderComplaintTable(filteredComplaints);
-    }
-
-    function clearComplaintFilter() {
-        document.getElementById('complaintUserTypeFilter').value = '';
-        currentComplaintFilter = '';
-        filteredComplaints = [...ComplaintsData];
-        renderComplaintTable(filteredComplaints);
-    }
-
-    function showNoComplaintResults(message) {
-        const compBody = document.getElementById("CompBody");
-        compBody.innerHTML = `
-            <tr>
-                <td colspan="7" class="no-results">
-                    <i class="fas fa-search"></i>
-                    <h5>No Results Found</h5>
-                    <p>${message}</p>
-                    <button class="btn btn-primary" onclick="clearComplaintFilter()">Clear Filter</button>
-                </td>
-            </tr>
-        `;
-    }
-
-    // User Filter Functions
-    function applyUserFilter() {
-        const filterValue = document.getElementById('userTypeFilter').value;
-        currentUserFilter = filterValue;
-
-        if (!filterValue) {
-            filteredUsers = [...UsersData];
-        } else {
-            filteredUsers = UsersData.filter(user => user.userType === filterValue);
-        }
-
-        renderUserTable(filteredUsers);
-    }
-
-    function clearUserFilter() {
-        document.getElementById('userTypeFilter').value = '';
-        currentUserFilter = '';
-        filteredUsers = [...UsersData];
-        renderUserTable(filteredUsers);
-    }
-
-    function showNoUserResults(message) {
-        const userBody = document.getElementById("UserBody");
-        userBody.innerHTML = `
-            <tr>
-                <td colspan="7" class="no-results">
-                    <i class="fas fa-users"></i>
-                    <h5>No Results Found</h5>
-                    <p>${message}</p>
-                    <button class="btn btn-primary" onclick="clearUserFilter()">Clear Filter</button>
-                </td>
-            </tr>
-        `;
-    }
-
-    function updateComplaintStats(count) {
-        document.getElementById("totalComplaint").innerText = count.toLocaleString();
-    }
-
-    function updateComplaintShowingText(count) {
-        document.getElementById("complaintShowingText").textContent = 
-            `Showing 1-${Math.min(10, count)} of ${count.toLocaleString()} complaints`;
-    }
-
-    function updateUserShowingText(count) {
-        document.getElementById("userShowingText").textContent = 
-            `Showing 1-${Math.min(10, count)} of ${count.toLocaleString()} users`;
-    }
-
-    function openComplaintModal(id) {
-        const complaint = ComplaintsData.find(c => c.id == id);
-        if (!complaint) return;
-
-        document.getElementById('modalComplaintId').textContent = `#CM-${complaint.id}`;
-        document.getElementById('modalTitle').textContent = complaint.title || 'N/A';
-        document.getElementById('modalDescription').textContent = complaint.description || 'No description';
-        document.getElementById('modalCreatedAt').textContent = complaint.createdAt ? 
-            new Date(complaint.createdAt).toLocaleString() : 'N/A';
-        document.getElementById('modalUpdatedAt').textContent = complaint.updatedAt ? 
-            new Date(complaint.updatedAt).toLocaleString() : 'N/A';
-
-        document.getElementById('modalUserInfo').innerHTML = `
-            <img src="https://ui-avatars.com/api/?name=${complaint.userName || 'User'}&background=random"
-                 class="rounded-circle me-2" width="40" alt="User Avatar">
-            <div>
-                <div class="fw-bold">${complaint.userName || 'Unknown User'}</div>
-                <small class="text-muted">${complaint.email || 'No email'}</small>
-            </div>
-        `;
-
-        const priorityBadge = document.getElementById('modalPriority');
-        priorityBadge.textContent = complaint.priority || 'N/A';
-        priorityBadge.className = `badge ${getPriorityClass(complaint.priority)} fs-6 px-3 py-2 mt-2`;
-
-        document.getElementById('statusSelect').value = complaint.status || 'NEW';
-    }
-
-    function openUserModal(id) {
-        const user = UsersData.find(u => u.id == id);
-        if (!user) return;
-
-        document.getElementById('userModalContent').innerHTML = `
-            <div class="row">
-                <div class="col-md-6">
-                    <strong>ID:</strong> #U-${user.id}
-                </div>
-                <div class="col-md-6">
-                    <strong>User Type:</strong> <span class="badge ${getUserTypeClass(user.userType)}">${user.userType}</span>
-                </div>
-            </div>
-            <hr>
-            <div class="row">
-                <div class="col-md-6">
-                    <strong>Name:</strong><br>${user.name}
-                </div>
-                <div class="col-md-6">
-                    <strong>Email:</strong><br>${user.email}
-                </div>
-            </div>
-            <div class="row mt-3">
-                <div class="col-md-6">
-                    <strong>Department:</strong><br>${user.department || 'N/A'}
-                </div>
-                <div class="col-md-6">
-                    <strong>Status:</strong><br>
-                    <span class="badge ${user.status === 'ACTIVE' ? 'bg-success' : 'bg-danger'} fs-6 px-3 py-2">${user.status}</span>
-                </div>
-            </div>
-            <div class="row mt-3">
-                <div class="col-12">
-                    <strong>Created:</strong><br>
-                    <small class="text-muted">${user.createdAt ? new Date(user.createdAt).toLocaleString() : 'N/A'}</small>
-                </div>
-            </div>
-        `;
-    }
-
-    function deleteComplaint(id) {
-        if (confirm('Are you sure you want to delete this complaint?')) {
-            console.log('Deleting complaint:', id);
-            loadData();
-        }
-    }
-
-    function deleteUser(id) {
-        if (confirm('Are you sure you want to delete this user?')) {
-            console.log('Deleting user:', id);
-            UsersData = UsersData.filter(u => u.id != id);
-            filteredUsers = filteredUsers.filter(u => u.id != id);
-            renderUserTable(filteredUsers);
-        }
-    }
-
-    function updateStatus() {
-        const modal = bootstrap.Modal.getInstance(document.getElementById('complaintModal'));
-        modal.hide();
-        alert('Status updated successfully!');
-    }
-
-    function showAddUserModal() {
-        alert('Add user functionality - Connect to your backend API');
-    }
-
-    function toggleSidebar() {
-        document.getElementById('sidebar').classList.toggle('active');
-    }
-
-    // Initialize
-    loadData();
 </script>
+
 </body>
 </html>

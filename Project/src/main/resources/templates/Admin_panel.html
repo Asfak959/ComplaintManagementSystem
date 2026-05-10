@@ -789,19 +789,23 @@
     }
 
     async function applyUserFilter() {
-        let userTypeFiler = document.getElementById("userTypeFilter").value
-        let url = await fetch("http://localhost:8080/Complaints");
-        if (userTypeFiler) {
-            url = +`?userType=${userTypeFiler}`;
-        }
+        try {
+            let userTypeFiler = document.getElementById("userTypeFilter").value
+            let url =("http://localhost:8080/Complaints");
+            if (userTypeFiler) {
+                url += `?userType=${userTypeFiler}`;
+            }
 
-        let responce = await fetch (url);
-        let data = await responce.json();
-        renderTable(data);
+            let responce = await fetch(url);
+            let data = await responce.json();
+            renderTable(data);
+        } catch (error) {
+            console.log(error.message)
+        }
     }
 
-   function clearUserFilter(){
-        document.getElementById("userTypeFilter").value ="";
+    function clearUserFilter() {
+        document.getElementById("userTypeFilter").value = "";
         loadData()
     }
 
