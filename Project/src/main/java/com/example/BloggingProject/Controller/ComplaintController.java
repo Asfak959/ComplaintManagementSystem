@@ -69,8 +69,8 @@ public class ComplaintController {
     // 7. Admin - Get all complaints as JSON
     @GetMapping("/Complaints")
     @ResponseBody
-    public List<Complaint> listOfComplaints() {
-        return complaintService.getAllComplaints();
+    public List<Complaint> listOfComplaints(@RequestParam (required = false) String userType) {
+        return complaintService.getAllComplaints(userType);
     }
 
     // 8. Admin - Update Status

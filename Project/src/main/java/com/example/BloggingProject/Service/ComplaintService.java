@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import com.example.BloggingProject.Model.Complaint;
 import com.example.BloggingProject.Repository.ComplaintRepo;
+import org.springframework.web.bind.annotation.RequestParam;
 
 @Service
 public class ComplaintService {
@@ -14,8 +15,17 @@ public class ComplaintService {
     @Autowired
     private ComplaintRepo pr;
 
-    // 1. Get all complaints
+    //    whithout paramiter
     public List<Complaint> getAllComplaints() {
+        return pr.findAll();
+    }
+
+    // 1. Get all complaints
+    public List<Complaint> getAllComplaints(String userType) {
+        if (userType != null && !userType.isEmpty()) {
+            return pr.findByUserType(userType);
+        }
+
         return pr.findAll();
     }
 

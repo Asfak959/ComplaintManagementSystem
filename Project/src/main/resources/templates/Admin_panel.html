@@ -789,8 +789,20 @@
     }
 
     async function applyUserFilter() {
-       let userTypeFiler =  document.getElementById("userTypeFilter").value
+        let userTypeFiler = document.getElementById("userTypeFilter").value
+        let url = await fetch("http://localhost:8080/Complaints");
+        if (userTypeFiler) {
+            url = +`?userType=${userTypeFiler}`;
+        }
 
+        let responce = await fetch (url);
+        let data = await responce.json();
+        renderTable(data);
+    }
+
+   function clearUserFilter(){
+        document.getElementById("userTypeFilter").value ="";
+        loadData()
     }
 
 </script>
