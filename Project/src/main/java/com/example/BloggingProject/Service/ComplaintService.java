@@ -67,4 +67,10 @@ public class ComplaintService {
     public List<Complaint> searchComplaints(String keyword) {
         return pr.findByTitleContainingIgnoreCaseOrDescriptionContainingIgnoreCase(keyword, keyword);
     }
+
+    //    get login user complaints
+    public List<Complaint> getLoginUserComplaints(String email) {
+        return pr.findByEmail(email);
+
+    }
 }
